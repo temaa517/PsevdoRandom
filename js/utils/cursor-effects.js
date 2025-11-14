@@ -1,4 +1,4 @@
-// ===== МАГИЧЕСКИЙ КУРСОР ФОКУСНИКА =====
+// ===== МАГИЧЕСКИЙ КУРСОР ФОКУСНИКА С ЗВУКАМИ =====
 
 class MagicCursor {
     constructor() {
@@ -6,6 +6,8 @@ class MagicCursor {
         this.isInitialized = false;
         this.mouseX = 0;
         this.mouseY = 0;
+        this.lastPlayTime = 0; // Для ограничения частоты звуков
+        this.soundCooldown = 100; // Минимальная задержка между звуками (мс)
         this.init();
     }
 
@@ -21,7 +23,6 @@ class MagicCursor {
     }
 
     createCursor() {
-        // Основной курсор - шляпа фокусника
         this.cursor = document.createElement('div');
         this.cursor.className = 'magic-cursor';
         this.cursor.innerHTML = '🎩';
@@ -38,19 +39,16 @@ class MagicCursor {
     }
 
     bindEvents() {
-        // Движение курсора
         document.addEventListener('mousemove', (e) => {
             this.mouseX = e.clientX;
             this.mouseY = e.clientY;
             this.moveCursor(e);
         });
 
-        // Клики - магическая вспышка
         document.addEventListener('click', (e) => {
             this.onClick(e);
         });
 
-        // Наведение на интерактивные элементы
         document.addEventListener('mouseover', (e) => {
             if (this.isInteractive(e.target)) {
                 this.onHoverStart(e.target);
@@ -68,25 +66,46 @@ class MagicCursor {
     }
 
     moveCursor(e) {
-        // Основной курсор
         this.cursor.style.left = (this.mouseX - 12) + 'px';
         this.cursor.style.top = (this.mouseY - 12) + 'px';
-
+        
+        // Случайные звуки при движении (редко)
+        if (Math.random() > 0.995 && this.canPlaySound()) {
+            this.playSound('whoosh', { volume: 0.1, rate: 0.8 + Math.random() * 0.4 });
+        }
     }
 
-
     onClick(e) {
-        // Магическая вспышка при клике
+        // Визуальные эффекты
         this.createMagicCircle(e.clientX, e.clientY);
-        
-        // Анимация шляпы
         this.cursor.style.transform = 'scale(1.3) rotate(15deg)';
         this.cursor.style.filter = 'drop-shadow(0 0 15px var(--neon-pink))';
         
-        
+        // Звук клика
+        this.playSound('click', { 
+            volume: 0.4,
+            rate: 0.9 + Math.random() * 0.2 // Случайная высота тона
+        });
+
         setTimeout(() => {
             this.cursor.style.transform = 'scale(1) rotate(0deg)';
         }, 200);
+    }
+
+    onHoverStart(element) {
+        this.cursor.style.transform = 'translateY(-8px) scale(1.2)';
+        this.cursor.style.textShadow = '0 0 15px var(--acid-green)';
+        
+        // Звук при наведении на интерактивный элемент
+        this.playSound('spell', { 
+            volume: 0.3,
+            rate: 1.2 // Более высокий тон для "магического" ощущения
+        });
+    }
+
+    onHoverEnd() {
+        this.cursor.style.transform = 'translateY(0) scale(1)';
+        this.cursor.style.textShadow = '0 0 10px var(--neon-pink)';
     }
 
     createMagicCircle(x, y) {
@@ -127,18 +146,17 @@ class MagicCursor {
         grow();
     }
 
-    onHoverStart(element) {
-        // Эффект при наведении - шляпа подпрыгивает
-        this.cursor.style.transform = 'translateY(-8px) scale(1.2)';
-        this.cursor.style.textShadow = '0 0 15px var(--acid-green)';
+    playSound(name, options = {}) {
+        if (!this.canPlaySound()) return;
         
+        if (window.soundManager) {
+            window.soundManager.play(name, options);
+            this.lastPlayTime = Date.now();
+        }
     }
 
-    onHoverEnd() {
-        // Возвращаем обычный вид
-        this.cursor.style.transform = 'translateY(0) scale(1)';
-        this.cursor.style.textShadow = '0 0 10px var(--neon-pink)';
-    
+    canPlaySound() {
+        return Date.now() - this.lastPlayTime > this.soundCooldown;
     }
 
     isInteractive(element) {
@@ -147,7 +165,6 @@ class MagicCursor {
     }
 
     animate() {
-        // Плавное плавание шляпы
         const float = () => {
             if (this.cursor) {
                 const floatY = Math.sin(Date.now() * 0.003) * 3;
@@ -173,7 +190,6 @@ class MagicCursor {
     }
 }
 
-// Инициализация
 document.addEventListener('DOMContentLoaded', () => {
     window.magicCursor = new MagicCursor();
     document.body.style.cursor = 'none';

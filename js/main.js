@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     initCustomCursor();
 
+    initSoundSystem();
+
     // Загрузка демо-видео
     loadDemoVideos();
     
@@ -13,6 +15,52 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация фильтров
     initFilters();
 });
+
+function initSoundSystem() {
+    // Звуковая система инициализируется автоматически через sound-manager.js
+    console.log('🎵 Звуковая система активирована!');
+    
+    // Добавляем кнопку отключения звука в футер (опционально)
+    addSoundToggle();
+}
+
+function addSoundToggle() {
+    // Можно добавить переключатель звука в интерфейс
+    const soundToggle = document.createElement('button');
+    soundToggle.className = 'sound-toggle';
+    soundToggle.innerHTML = '🔊';
+    soundToggle.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 50%;
+        background: var(--neon-pink);
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 0 10px var(--neon-pink);
+    `;
+    
+    soundToggle.addEventListener('click', () => {
+        if (window.soundManager) {
+            if (window.soundManager.isEnabled) {
+                window.soundManager.disable();
+                soundToggle.innerHTML = '🔇';
+                soundToggle.style.background = 'var(--electric-blue)';
+            } else {
+                window.soundManager.enable();
+                soundToggle.innerHTML = '🔊';
+                soundToggle.style.background = 'var(--neon-pink)';
+            }
+        }
+    });
+    
+    document.body.appendChild(soundToggle);
+}
 
 function initCustomCursor() {
     // Добавляем класс для скрытия стандартного курсора
