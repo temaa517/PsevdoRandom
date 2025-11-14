@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🎩 Упоротые фокусы инициализированы!');
     
+    initCustomCursor();
+
     // Загрузка демо-видео
     loadDemoVideos();
     
@@ -11,6 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация фильтров
     initFilters();
 });
+
+function initCustomCursor() {
+    // Добавляем класс для скрытия стандартного курсора
+    document.body.classList.add('has-custom-cursor');
+    
+    // Курсор инициализируется автоматически через cursor-effects.js
+    console.log('🎯 Кастомный курсор активирован!');
+}
 
 // Загрузка демо-видео (временно)
 function loadDemoVideos() {

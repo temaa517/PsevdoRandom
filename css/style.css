@@ -476,3 +476,85 @@ body {
         height: 150px;
     }
 }
+/* ===== ЭФФЕКТЫ КУРСОРА ===== */
+
+/* Скрываем стандартный курсор когда кастомный доступен */
+body.has-custom-cursor {
+    cursor: none !important;
+}
+
+/* Кастомный курсор */
+.custom-cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--electric-blue);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease, background 0.3s ease;
+    box-shadow: 0 0 10px var(--electric-blue);
+}
+
+/* Фолловер курсора */
+.cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--neon-pink);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.3s ease;
+    mix-blend-mode: difference;
+    box-shadow: 0 0 15px var(--neon-pink);
+}
+
+/* Частицы курсора */
+.cursor-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9997;
+    border-radius: 50%;
+}
+
+/* Волна при клике */
+.cursor-wave {
+    position: fixed;
+    border: 2px solid var(--acid-green);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9996;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
+}
+
+/* Состояния для интерактивных элементов */
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor,
+.video-card:hover ~ .custom-cursor {
+    transform: scale(1.5);
+    background: var(--acid-green) !important;
+}
+
+a:hover ~ .cursor-follower,
+button:hover ~ .cursor-follower, 
+.video-card:hover ~ .cursor-follower {
+    transform: scale(1.3) !important;
+    border-color: var(--acid-green) !important;
+    box-shadow: 0 0 25px var(--acid-green) !important;
+}
+
+/* Отключение кастомного курсора на мобильных */
+@media (max-width: 768px) {
+    body.has-custom-cursor {
+        cursor: auto !important;
+    }
+    
+    .custom-cursor,
+    .cursor-follower,
+    .cursor-particle {
+        display: none !important;
+    }
+}

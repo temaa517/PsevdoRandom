@@ -1,0 +1,34 @@
+
+.magic-cursor {
+    position: fixed;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.2s ease;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+.magic-circle {
+    position: fixed;
+    border: 2px solid var(--acid-green);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
+}
+
+body.has-custom-cursor {
+    cursor: none !important;
+}
+
+@media (max-width: 768px) {
+    body.has-custom-cursor {
+        cursor: auto !important;
+    }
+    
+    .magic-cursor {
+        display: none !important;
+    }
+}

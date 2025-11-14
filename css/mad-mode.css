@@ -1,0 +1,143 @@
+/* ===== БЕЗУМНЫЙ РЕЖИМ ===== */
+
+/* Основные стили безумного режима */
+.ultra-mad {
+    /* Бешеная анимация всего сайта */
+    animation: madShake 0.5s infinite !important;
+    filter: hue-rotate(90deg) saturate(200%) brightness(1.2);
+}
+
+/* Дрожание элементов */
+@keyframes madShake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    10% { transform: translateX(-2px) rotate(-0.5deg); }
+    20% { transform: translateX(2px) rotate(0.5deg); }
+    30% { transform: translateX(-2px) rotate(-0.5deg); }
+    40% { transform: translateX(2px) rotate(0.5deg); }
+    50% { transform: translateX(-2px) rotate(-0.5deg); }
+    60% { transform: translateX(2px) rotate(0.5deg); }
+    70% { transform: translateX(-2px) rotate(-0.5deg); }
+    80% { transform: translateX(2px) rotate(0.5deg); }
+    90% { transform: translateX(-2px) rotate(-0.5deg); }
+}
+
+.ultra-mad * {
+    transition: all 0.1s ease !important;
+}
+
+/* Ускоренные плавающие объекты */
+.ultra-mad .floating-object {
+    animation-duration: 3s !important;
+    opacity: 0.8 !important;
+    font-size: 3rem !important;
+}
+
+/* Новые безумные объекты */
+.ultra-mad .floating-object.crazy {
+    animation: crazyFloat 2s infinite linear;
+}
+
+@keyframes crazyFloat {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    25% { transform: translate(20px, -20px) rotate(90deg) scale(1.2); }
+    50% { transform: translate(40px, 0) rotate(180deg) scale(1); }
+    75% { transform: translate(20px, 20px) rotate(270deg) scale(0.8); }
+    100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+}
+
+/* Безумные цвета текста */
+.ultra-mad .hero-title span {
+    animation: colorMadness 0.8s infinite alternate;
+}
+
+@keyframes colorMadness {
+    0% { color: #ff00ff; text-shadow: 0 0 20px #ff00ff; }
+    33% { color: #00ffff; text-shadow: 0 0 20px #00ffff; }
+    66% { color: #39ff14; text-shadow: 0 0 20px #39ff14; }
+    100% { color: #ff6b35; text-shadow: 0 0 20px #ff6b35; }
+}
+
+/* Сумасшедшие карточки видео */
+.ultra-mad .video-card {
+    animation: cardPulse 2s infinite;
+    border: 3px dashed;
+    border-image: linear-gradient(45deg, #ff00ff, #00ffff, #39ff14) 1;
+}
+
+@keyframes cardPulse {
+    0%, 100% { transform: scale(1) rotate(-1deg); }
+    50% { transform: scale(1.05) rotate(1deg); }
+}
+
+.ultra-mad .video-card:nth-child(odd) {
+    transform: rotate(5deg) scale(1.1);
+    background: linear-gradient(45deg, #ff00ff, #00ffff) !important;
+}
+
+.ultra-mad .video-card:nth-child(even) {
+    transform: rotate(-5deg) scale(1.1);
+    background: linear-gradient(45deg, #39ff14, #ff6b35) !important;
+}
+
+/* Безумные кнопки фильтров */
+.ultra-mad .filter-btn {
+    animation: buttonGlow 1s infinite alternate;
+}
+
+@keyframes buttonGlow {
+    from { box-shadow: 0 0 10px currentColor; }
+    to { box-shadow: 0 0 30px currentColor, 0 0 40px currentColor; }
+}
+
+/* Кнопка безумного режима в активном состоянии */
+.ultra-mad .mad-button {
+    background: linear-gradient(45deg, #ff0000, #ffff00) !important;
+    animation: emergencyFlash 0.5s infinite alternate;
+}
+
+@keyframes emergencyFlash {
+    from { background: linear-gradient(45deg, #ff0000, #ffff00); }
+    to { background: linear-gradient(45deg, #ffff00, #ff0000); }
+}
+
+/* Следы курсора */
+.cursor-trail {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: var(--neon-pink);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: trail 0.5s linear forwards;
+    z-index: 9999;
+}
+
+@keyframes trail {
+    0% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% { 
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Безумный курсор */
+.ultra-mad {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text x="8" y="24" font-size="20">🪄</text></svg>'), auto;
+}
+
+/* Адаптивность для безумного режима */
+@media (max-width: 768px) {
+    .ultra-mad {
+        animation: madShakeMobile 0.8s infinite;
+    }
+    
+    @keyframes madShakeMobile {
+        0%, 100% { transform: translateX(0) rotate(0deg); }
+        25% { transform: translateX(-1px) rotate(-0.3deg); }
+        50% { transform: translateX(1px) rotate(0.3deg); }
+        75% { transform: translateX(-1px) rotate(-0.3deg); }
+    }
+}
