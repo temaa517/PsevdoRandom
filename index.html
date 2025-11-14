@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упоротые Фокусы - Там, где магия встречается с абсурдом!</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Безумный фон -->
+    <div class="mad-background">
+        <div class="floating-object banana">🍌</div>
+        <div class="floating-object sock">🧦</div>
+        <div class="floating-object cookie">🍪</div>
+        <div class="floating-object wand">🪄</div>
+    </div>
+
+    <!-- Главный хедер -->
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="nav-logo">
+                <span class="logo-icon">🎩</span>
+                <span class="logo-text">Упоротые Фокусы</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#videos" class="nav-link">Фокусы</a></li>
+                <li><a href="about.html" class="nav-link">О Безумии</a></li>
+                <li><a href="submit.html" class="nav-link">Предложить</a></li>
+            </ul>
+            <button class="mad-button" id="mad-mode">БЕЗУМНЫЙ РЕЖИМ</button>
+        </nav>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-part-1">САМЫЕ УПОРОТЫЕ</span>
+                <span class="title-part-2">ФОКУСЫ</span>
+                <span class="title-part-3">ВСЕЛЕННОЙ!</span>
+            </h1>
+            <p class="hero-subtitle">Там, где магия встречается с абсурдом, а мозг пытается сбежать через уши!</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">безумия</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">42</span>
+                    <span class="stat-label">упоротых фокуса</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">сломанный мозг</span>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <button class="cta-button primary" id="watch-random">
+                    🎩 Случайный Фокус
+                </button>
+                <button class="cta-button secondary" id="how-it-works">
+                    ❓ Как Это Работает?
+                </button>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="mad-tv">
+                <div class="tv-screen">
+                    <div class="static-overlay"></div>
+                    <div class="tv-content">
+                        <span class="tv-text">ВКЛЮЧИ БЕЗУМИЕ!</span>
+                    </div>
+                </div>
+                <div class="tv-knobs">
+                    <div class="knob"></div>
+                    <div class="knob"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Фильтры -->
+    <section class="filters-section" id="videos">
+        <div class="container">
+            <h2 class="section-title">Выбери своё безумие:</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">ВСЁ ПОДРЯД</button>
+                <button class="filter-btn" data-filter="food">🍕 С ЕДОЙ</button>
+                <button class="filter-btn" data-filter="home">🏠 ДЛЯ ДОМА</button>
+                <button class="filter-btn" data-filter="danger">⚠️ ОПАСНО</button>
+                <button class="filter-btn" data-filter="wtf">🤯 WTF</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Сетка видео -->
+    <section class="videos-section">
+        <div class="container">
+            <div class="videos-grid" id="videos-grid">
+                <!-- Видео карточки будут добавляться через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    🎩 Упоротые Фокусы
+                </div>
+                <p class="footer-text">
+                    © 2024 Лаборатория безумной магии.<br>
+                    Все фокусы проверены на упоротость!<br>
+                    <span class="warning">Не пытайтесь повторять дома! (Или пытайтесь, нам интересно)</span>
+                </p>
+                <div class="footer-madness">
+                    <span class="madness-level">Уровень безумия: <strong>MAXIMUM</strong></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="video-player"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
