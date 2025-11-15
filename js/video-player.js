@@ -454,14 +454,21 @@ class VideoPlayer {
     }
 
     getCategoryName(category) {
-        const categories = {
-            'food': '🍕 С ЕДОЙ',
-            'home': '🏠 ДЛЯ ДОМА', 
-            'danger': '⚠️ ОПАСНО',
-            'wtf': '🤯 WTF'
-        };
-        return categories[category] || category;
-    }
+    const categories = {
+        'cards': '🃏 КАРТОЧНЫЕ',
+        'coin': '🪙 С МОНЕТАМИ', 
+        'rope': '🧶 С ВЕРЁВКАМИ',
+        'classic': '⭐ КЛАССИКА',
+        'rubberband': '📎 С РЕЗИНКАМИ',
+        'fire': '🔥 ОГНЕННЫЕ',
+        'liquid': '💧 С ЖИДКОСТЯМИ',
+        'ring': '💍 С КОЛЬЦАМИ',
+        'big': '💪 БОЛЬШИЕ',
+        'science': '🔬 НАУЧНЫЕ',
+        'balls': '⚽ С ШАРИКАМИ'
+    };
+    return categories[category] || category;
+}
 
     getDifficultyText(difficulty) {
         const levels = {

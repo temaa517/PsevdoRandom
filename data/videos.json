@@ -75,6 +75,306 @@
         "likes": 956,
         "dislikes": 45
       }
+    },
+    {
+      "id": 4,
+      "title": "Фокус с резинкой",
+      "description": "Резинка проходит сквозь палец! Физика плачет!",
+      "category": "rubberband",
+      "difficulty": "easy",
+      "duration": "01:50",
+      "videoUrl": "assets/videos/rubberband-trick.mp4",
+      "previewImage": "assets/images/previews/rubberband-preview.jpg",
+      "tutorial": {
+        "title": "КАК РЕЗИНКА ПРОХОДИТ СКВОЗЬ ПАЛЕЦ:",
+        "steps": [
+          "Надень резинку на указательный и средний палец",
+          "Быстрым движением перебрось резинку",
+          "Создаётся иллюзия прохождения сквозь палец",
+          "Тренируй скорость - это ключ к успеху!",
+          "Зрители будут в замешательстве!"
+        ]
+      },
+      "stats": {
+        "views": 42800,
+        "likes": 3250,
+        "dislikes": 45
+      }
+    },
+    {
+      "id": 5,
+      "title": "Исчезающая спичка",
+      "description": "Спичка исчезает в пламени! Настоящая магия огня!",
+      "category": "fire",
+      "difficulty": "medium",
+      "duration": "02:20",
+      "videoUrl": "assets/videos/match-vanish.mp4",
+      "previewImage": "assets/images/previews/match-preview.jpg",
+      "tutorial": {
+        "title": "СЕКРЕТ ИСЧЕЗАЮЩЕЙ СПИЧКИ:",
+        "steps": [
+          "Зажги спичку и дай ей немного прогореть",
+          "Быстро зажми между пальцами у самого основания",
+          "Огонь гаснет - спичка 'исчезает'",
+          "На самом деле она спрятана в руке!",
+          "ОБЯЗАТЕЛЬНО тренируйся с холодными спичками сначала!"
+        ]
+      },
+      "stats": {
+        "views": 29500,
+        "likes": 2180,
+        "dislikes": 89
+      }
+    },
+    {
+      "id": 6,
+      "title": "Фокус с кольцом и верёвочкой",
+      "description": "Кольцо прилипает к верёвке без узла!",
+      "category": "rope",
+      "difficulty": "medium",
+      "duration": "03:10",
+      "videoUrl": "assets/videos/ring-rope.mp4",
+      "previewImage": "assets/images/previews/ring-rope-preview.jpg",
+      "tutorial": {
+        "title": "КАК КОЛЬЦО ПРИЛИПАЕТ К ВЕРЁВКЕ:",
+        "steps": [
+          "Продень верёвку через кольцо",
+          "Сделай секретную петлю особым способом",
+          "Когда тянете - кольцо 'прилипает'",
+          "Это классический фокус с ложным узлом",
+          "Требует практики но выглядит волшебно!"
+        ]
+      },
+      "stats": {
+        "views": 18700,
+        "likes": 1450,
+        "dislikes": 23
+      }
+    },
+    {
+      "id": 7,
+      "title": "Угадай карту",
+      "description": "Я всегда угадаю твою карту! Телепатия!",
+      "category": "cards",
+      "difficulty": "easy",
+      "duration": "02:45",
+      "videoUrl": "assets/videos/guess-card.mp4",
+      "previewImage": "assets/images/previews/guess-card-preview.jpg",
+      "tutorial": {
+        "title": "СЕКРЕТ ТЕЛЕПАТИИ С КАРТАМИ:",
+        "steps": [
+          "Запомни нижнюю карту в колоде",
+          "Дай зрителю выбрать любую карту",
+          "Пока он смотрит - подсмотри нижнюю",
+          "Верни карту в колоду особым способом",
+          "ДОСТАНЬ ЕЁ И УГАДАЙ! Волшебство!"
+        ]
+      },
+      "stats": {
+        "views": 34200,
+        "likes": 2670,
+        "dislikes": 56
+      }
+    },
+    {
+      "id": 8,
+      "title": "Фокус с исчезающей водой",
+      "description": "Вода исчезает из стакана в платке!",
+      "category": "liquid",
+      "difficulty": "medium",
+      "duration": "03:30",
+      "videoUrl": "assets/videos/water-vanish.mp4",
+      "previewImage": "assets/images/previews/water-vanish-preview.jpg",
+      "tutorial": {
+        "title": "КУДА ДЕВАЕТСЯ ВОДА:",
+        "steps": [
+          "Используй специальный стакан с двойным дном",
+          "Или губку внутри платка (старая школа!)",
+          "Накрой стакан платком - вода 'исчезает'",
+          "На самом деле впитывается в губку",
+          "Классика жанра - всегда работает!"
+        ]
+      },
+      "stats": {
+        "views": 27800,
+        "likes": 1980,
+        "dislikes": 67
+      }
+    },
+    {
+      "id": 9,
+      "title": "Фокус с летающим стулом",
+      "description": "Стул парит в воздухе! Антигравитация!",
+      "category": "big",
+      "difficulty": "hard",
+      "duration": "05:20",
+      "videoUrl": "assets/videos/flying-chair.mp4",
+      "previewImage": "assets/images/previews/chair-preview.jpg",
+      "tutorial": {
+        "title": "СЕКРЕТ ЛЕТАЮЩЕГО СТУЛА:",
+        "steps": [
+          "Нужен специальный стул с опорой сзади",
+          "Встань так чтобы опора была скрыта телом",
+          "Медленно отрывай ноги от земли",
+          "Создаётся иллюзия парения!",
+          "Требует силы рук и хорошего равновесия!"
+        ]
+      },
+      "stats": {
+        "views": 89200,
+        "likes": 7450,
+        "dislikes": 234
+      }
+    },
+    {
+      "id": 10,
+      "title": "Фокус с разрезанной верёвкой",
+      "description": "Разрезаю верёвку, а она целая! Регенерация!",
+      "category": "rope",
+      "difficulty": "medium",
+      "duration": "04:10",
+      "videoUrl": "assets/videos/cut-rope.mp4",
+      "previewImage": "assets/images/previews/cut-rope-preview.jpg",
+      "tutorial": {
+        "title": "КАК ВЕРЁВКА СРАСТАЕТСЯ:",
+        "steps": [
+          "Используй специальную верёвку с кармашком",
+          "Или подмену на целую верёвку",
+          "Создаётся иллюзия разрезания",
+          "На самом деле верёвка остаётся целой",
+          "Очень зрелищный и простой фокус!"
+        ]
+      },
+      "stats": {
+        "views": 32400,
+        "likes": 2450,
+        "dislikes": 78
+      }
+    },
+    {
+      "id": 11,
+      "title": "Фокус с кольцом на пальце",
+      "description": "Кольцо проходит сквозь палец! Больно? Нет!",
+      "category": "ring",
+      "difficulty": "easy",
+      "duration": "02:15",
+      "videoUrl": "assets/videos/ring-finger.mp4",
+      "previewImage": "assets/images/previews/ring-finger-preview.jpg",
+      "tutorial": {
+        "title": "КАК КОЛЬЦО ПРОХОДИТ СКВОЗЬ ПАЛЕЦ:",
+        "steps": [
+          "Надень кольцо на средний палец",
+          "Быстрым движением перебрось на указательный",
+          "Создаётся иллюзия прохождения сквозь палец",
+          "Тренируй скорость и плавность",
+          "Простой но очень эффектный фокус!"
+        ]
+      },
+      "stats": {
+        "views": 28700,
+        "likes": 2180,
+        "dislikes": 34
+      }
+    },
+    {
+      "id": 12,
+      "title": "Фокус с монеткой и стаканом",
+      "description": "Монета проходит сквозь дно стакана!",
+      "category": "coin",
+      "difficulty": "medium",
+      "duration": "03:25",
+      "videoUrl": "assets/videos/coin-glass.mp4",
+      "previewImage": "assets/images/previews/coin-glass-preview.jpg",
+      "tutorial": {
+        "title": "СЕКРЕТ МОНЕТЫ СКВОЗЬ СТАКАН:",
+        "steps": [
+          "Используй специальный стакан с секретом",
+          "Или ловкость рук с подменой монеты",
+          "Монета 'проходит' сквозь дно",
+          "На самом деле она была в руке всё время",
+          "Классический фокус который все знают но не умеют!"
+        ]
+      },
+      "stats": {
+        "views": 35600,
+        "likes": 2780,
+        "dislikes": 92
+      }
+    },
+    {
+      "id": 13,
+      "title": "Фокус с картами - веер",
+      "description": "Карты сами раскрываются веером! Красиво!",
+      "category": "cards",
+      "difficulty": "easy",
+      "duration": "01:40",
+      "videoUrl": "assets/videos/card-fan.mp4",
+      "previewImage": "assets/images/previews/card-fan-preview.jpg",
+      "tutorial": {
+        "title": "КАК СДЕЛАТЬ КРАСИВЫЙ ВЕЕР:",
+        "steps": [
+          "Возьми колоду карт определённым хватом",
+          "Большим пальцем медленно раздвигай карты",
+          "Создаётся красивый ровный веер",
+          "Требует практики но выглядит профессионально",
+          "Основа многих карточных фокусов!"
+        ]
+      },
+      "stats": {
+        "views": 19800,
+        "likes": 1560,
+        "dislikes": 23
+      }
+    },
+    {
+      "id": 14,
+      "title": "Фокус с плавающей иголкой",
+      "description": "Иголка плавает в воде! Нарушение физики!",
+      "category": "science",
+      "difficulty": "easy",
+      "duration": "02:05",
+      "videoUrl": "assets/videos/floating-needle.mp4",
+      "previewImage": "assets/images/previews/needle-preview.jpg",
+      "tutorial": {
+        "title": "СЕКРЕТ ПЛАВАЮЩЕЙ ИГОЛКИ:",
+        "steps": [
+          "Аккуратно положи иголку на поверхность воды",
+          "Сила поверхностного натяжения удержит её",
+          "Иголка будет 'плавать' а не тонуть",
+          "Настоящий научный фокус!",
+          "Работает только с чистой водой и сухой иголкой!"
+        ]
+      },
+      "stats": {
+        "views": 42300,
+        "likes": 3250,
+        "dislikes": 45
+      }
+    },
+    {
+      "id": 15,
+      "title": "Фокус с исчезающим шариком",
+      "description": "Шарик исчезает в кулаке! Классика!",
+      "category": "balls",
+      "difficulty": "easy",
+      "duration": "02:50",
+      "videoUrl": "assets/videos/ball-vanish.mp4",
+      "previewImage": "assets/images/previews/ball-preview.jpg",
+      "tutorial": {
+        "title": "КУДА ДЕВАЕТСЯ ШАРИК:",
+        "steps": [
+          "Покажи шарик в руке зрителям",
+          "Сделай вид что перекладываешь в другую руку",
+          "На самом деле спрячь в карман или специальный держатель",
+          "Покажи пустую руку - ШАРИК ИСЧЕЗ!",
+          "Самый первый фокус многих фокусников!"
+        ]
+      },
+      "stats": {
+        "views": 51200,
+        "likes": 4120,
+        "dislikes": 67
+      }
     }
   ]
 }

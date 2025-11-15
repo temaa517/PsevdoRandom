@@ -558,3 +558,24 @@ button:hover ~ .cursor-follower,
         display: none !important;
     }
 }
+
+/* В css/style.css добавляем */
+.video-card[data-category="cards"] {
+    border-left: 4px solid #ff6b6b;
+}
+
+.video-card[data-category="coin"] {
+    border-left: 4px solid #ffd166;
+}
+
+.video-card[data-category="rope"] {
+    border-left: 4px solid #06d6a0;
+}
+
+.video-card[data-category="classic"] {
+    border-left: 4px solid #118ab2;
+}
+
+.video-card[data-category="rubberband"] {
+    border-left: 4px solid #ef476f;
+}
