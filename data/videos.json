@@ -7,8 +7,8 @@
       "category": "food",
       "difficulty": "easy",
       "duration": "00:45",
-      "videoUrl": "assets/videos/cookie-magic.mp4",
-      "previewImage": "assets/images/previews/cookie-preview.jpg",
+      "videoUrl": "../assets/videos/cookie-magic.mp4",
+      "previewImage": "../assets/images/previews/cookie-preview.jpg",
       "tutorial": {
         "title": "ГАЙД ДЛЯ ЧАЙНИКОВ:",
         "steps": [
@@ -33,7 +33,7 @@
       "category": "home",
       "difficulty": "medium", 
       "duration": "01:20",
-      "videoUrl": "assets/videos/sock-magic.mp4",
+      "videoUrl": "../assets/videos/sock-magic.mp4",
       "previewImage": "assets/images/previews/sock-preview.jpg",
       "tutorial": {
         "title": "СЕКРЕТ МАГИИ НОСКОВ:",
@@ -58,7 +58,7 @@
       "category": "food",
       "difficulty": "hard",
       "duration": "02:15", 
-      "videoUrl": "assets/videos/banana-phone.mp4",
+      "videoUrl": "../assets/videos/ЯДЕРНЫЙ-ВЗРЫВ.mp4",
       "previewImage": "assets/images/previews/banana-preview.jpg",
       "tutorial": {
         "title": "КАК РАЗГОВАРИВАТЬ С БАНАНОМ:",

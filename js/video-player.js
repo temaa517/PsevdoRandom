@@ -83,7 +83,7 @@ class VideoPlayer {
                         width: 100%;
                         height: auto;
                         display: block;
-                    " controls>
+                    ">
                         Твой браузер не поддерживает видео 😢
                     </video>
                     
@@ -471,7 +471,7 @@ class VideoPlayer {
         };
         return levels[difficulty] || difficulty;
     }
-    
+
     forceCursorUpdate = (e) => {
         if (window.cursorEffects && this.modal.style.display === 'flex') {
             // Принудительно обновляем позицию курсора в модалке
