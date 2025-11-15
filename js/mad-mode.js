@@ -5,6 +5,8 @@ class MadMode {
         this.isActive = false;
         this.madButton = document.getElementById('mad-mode');
         this.crazyObjects = [];
+        this.flashInterval = null;
+        this.flashElements = [];
         this.init();
     }
 
@@ -25,35 +27,208 @@ class MadMode {
         this.isActive = true;
         document.body.classList.add('ultra-mad');
         this.madButton.textContent = 'СПАСИТЕ! ВЫКЛЮЧИТЕ!';
+        this.madButton.style.background = 'linear-gradient(45deg, #ff0000, #ffff00)';
         
-        // Включаем все безумные функции
+        // ВКЛЮЧАЕМ ВСЕ ЭФФЕКТЫ БЕЗУМИЯ
+        this.disableBeautifulCursor();
+        this.enableMadCursor();
         this.accelerateFloatingObjects();
         this.addCrazyObjects();
         this.transformText();
         this.startCursorTrails();
         this.playMadSounds();
+        this.addBodyShake();
         
-        // Предупреждение о безумии
-        setTimeout(() => {
-            this.showMadAlert();
-        }, 500);
+        // Добавляем переливающийся фон
+        this.startBackgroundMadness();
+        
+        // ЗАПУСКАЕМ ПСИХОДЕЛИЧЕСКИЕ ВСПЫШКИ
+        this.startPsychedelicFlashes();
+        
+        console.log('🤪 БЕЗУМНЫЙ РЕЖИМ АКТИВИРОВАН С ПСИХОДЕЛИЕЙ!');
     }
 
-    disable() {
+     disable() {
         this.isActive = false;
         document.body.classList.remove('ultra-mad');
         this.madButton.textContent = 'БЕЗУМНЫЙ РЕЖИМ';
+        this.madButton.style.background = '';
         
-        // Выключаем все безумные функции
+        // ВЫКЛЮЧАЕМ ВСЕ ЭФФЕКТЫ БЕЗУМИЯ
+        this.enableBeautifulCursor();
         this.removeCrazyObjects();
         this.normalizeFloatingObjects();
         this.restoreText();
         this.stopCursorTrails();
+        this.removeBodyShake();
+        this.removeMadnessBackground();
         
-        // Сообщение о возврате к нормальности
-        this.showNormalAlert();
+        // ОСТАНАВЛИВАЕМ ПСИХОДЕЛИЧЕСКИЕ ВСПЫШКИ
+        this.stopPsychedelicFlashes();
+        
+        console.log('😅 Безумный режим выключен');
     }
     
+     startPsychedelicFlashes() {
+        // Создаём элементы для вспышек
+        this.createFlashElements();
+        
+        // Запускаем интервал вспышек
+        this.flashInterval = setInterval(() => {
+            this.createRandomFlash();
+        }, 800); // Вспышки каждые 800ms
+        
+        // Случайные большие вспышки
+        setInterval(() => {
+            this.createBigFlash();
+        }, 3000);
+    }
+    
+    createFlashElements() {
+        // Создаём несколько элементов для вспышек
+        for (let i = 0; i < 5; i++) {
+            const flash = document.createElement('div');
+            flash.className = 'psychedelic-flash';
+            flash.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9990;
+                opacity: 0;
+                mix-blend-mode: overlay;
+            `;
+            document.body.appendChild(flash);
+            this.flashElements.push(flash);
+        }
+    }
+
+    createRandomFlash() {
+        const availableFlashes = this.flashElements.filter(flash => flash.style.opacity === '0');
+        if (availableFlashes.length === 0) return;
+        
+        const flash = availableFlashes[Math.floor(Math.random() * availableFlashes.length)];
+        const colors = [
+            'radial-gradient(circle, #ff00ff 0%, transparent 70%)',
+            'radial-gradient(circle, #00ffff 0%, transparent 70%)',
+            'radial-gradient(circle, #ffff00 0%, transparent 70%)',
+            'radial-gradient(circle, #39ff14 0%, transparent 70%)',
+            'radial-gradient(circle, #ff6b35 0%, transparent 70%)',
+            'radial-gradient(circle, #9d00ff 0%, transparent 70%)'
+        ];
+        
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const randomX = Math.random() * 100;
+        const randomY = Math.random() * 100;
+        const randomSize = 20 + Math.random() * 50;
+        
+        flash.style.background = randomColor;
+        flash.style.backgroundPosition = `${randomX}% ${randomY}%`;
+        flash.style.backgroundSize = `${randomSize}% ${randomSize}%`;
+        
+        // Анимация вспышки
+        this.animateFlash(flash);
+    }
+
+    createBigFlash() {
+        const availableFlashes = this.flashElements.filter(flash => flash.style.opacity === '0');
+        if (availableFlashes.length === 0) return;
+        
+        const flash = availableFlashes[Math.floor(Math.random() * availableFlashes.length)];
+        const colors = [
+            'linear-gradient(45deg, #ff00ff, #00ffff)',
+            'linear-gradient(135deg, #ffff00, #ff00ff)',
+            'linear-gradient(225deg, #39ff14, #ffff00)',
+            'linear-gradient(315deg, #00ffff, #ff6b35)'
+        ];
+        
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        flash.style.background = randomColor;
+        flash.style.backgroundSize = '200% 200%';
+        flash.style.backgroundPosition = '50% 50%';
+        
+        // Большая вспышка на весь экран
+        this.animateBigFlash(flash);
+    }
+
+    animateFlash(flash) {
+        let opacity = 0;
+        let scale = 0.5;
+        const duration = 400 + Math.random() * 400;
+        const startTime = Date.now();
+        
+        const animate = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = elapsed / duration;
+            
+            if (progress < 1) {
+                // Быстрое появление, медленное исчезновение
+                if (progress < 0.3) {
+                    opacity = progress / 0.3;
+                    scale = 0.5 + (progress / 0.3) * 0.5;
+                } else {
+                    opacity = 1 - ((progress - 0.3) / 0.7);
+                    scale = 1 - ((progress - 0.3) / 0.7) * 0.3;
+                }
+                
+                flash.style.opacity = opacity;
+                flash.style.transform = `scale(${scale})`;
+                requestAnimationFrame(animate);
+            } else {
+                flash.style.opacity = '0';
+                flash.style.transform = 'scale(1)';
+            }
+        };
+        
+        animate();
+    }
+
+    animateBigFlash(flash) {
+        let opacity = 0;
+        const duration = 800;
+        const startTime = Date.now();
+        
+        const animate = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = elapsed / duration;
+            
+            if (progress < 1) {
+                // Медленное появление и исчезновение
+                if (progress < 0.5) {
+                    opacity = progress / 0.5;
+                } else {
+                    opacity = 1 - ((progress - 0.5) / 0.5);
+                }
+                
+                flash.style.opacity = opacity;
+                requestAnimationFrame(animate);
+            } else {
+                flash.style.opacity = '0';
+            }
+        };
+        
+        animate();
+    }
+
+    stopPsychedelicFlashes() {
+        // Останавливаем интервалы
+        if (this.flashInterval) {
+            clearInterval(this.flashInterval);
+            this.flashInterval = null;
+        }
+        
+        // Удаляем элементы вспышек
+        this.flashElements.forEach(flash => {
+            if (flash.parentNode) {
+                flash.parentNode.removeChild(flash);
+            }
+        });
+        this.flashElements = [];
+    }
+
     disableBeautifulCursor() {
         // Временно скрываем красивый курсор
         if (window.cursorEffects) {
