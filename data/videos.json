@@ -1,0 +1,80 @@
+{
+  "videos": [
+    {
+      "id": 1,
+      "title": "Исчезновение печеньки через рот",
+      "description": "Магическое исчезновение съедобного артефакта!",
+      "category": "food",
+      "difficulty": "easy",
+      "duration": "00:45",
+      "videoUrl": "assets/videos/cookie-magic.mp4",
+      "previewImage": "assets/images/previews/cookie-preview.jpg",
+      "tutorial": {
+        "title": "ГАЙД ДЛЯ ЧАЙНИКОВ:",
+        "steps": [
+          "Возьми печеньку пальцами (теми штуками на конце руки)",
+          "Подними руку с печенькой к лицу",
+          "Открой дырочку в лице (ту, что ниже носа)",
+          "Засунь печеньку в дырочку БЫСТРО!",
+          "Жуй белыми костяшками во рту!",
+          "ВСЁ! Печенька исчезла в твоём животе!"
+        ]
+      },
+      "stats": {
+        "views": 15420,
+        "likes": 892,
+        "dislikes": 15
+      }
+    },
+    {
+      "id": 2,
+      "title": "Фокус с носком-невидимкой",
+      "description": "Куда деваются носки из стиралки? Ответ - МАГИЯ!",
+      "category": "home",
+      "difficulty": "medium", 
+      "duration": "01:20",
+      "videoUrl": "assets/videos/sock-magic.mp4",
+      "previewImage": "assets/images/previews/sock-preview.jpg",
+      "tutorial": {
+        "title": "СЕКРЕТ МАГИИ НОСКОВ:",
+        "steps": [
+          "Возьми два одинаковых носка (важно!)",
+          "Кини их в стиралку-портальную машину",
+          "Жди пока магия стирки произойдет",
+          "Достань... ОЙ! Один носок упорхал в другое измерение!",
+          "ВОТ И ВСЯ МАГИЯ!"
+        ]
+      },
+      "stats": {
+        "views": 23890,
+        "likes": 1245,
+        "dislikes": 23
+      }
+    },
+    {
+      "id": 3,
+      "title": "Банан вместо телефона",
+      "description": "Звонки через фрукт - это реально! Проверено!",
+      "category": "food",
+      "difficulty": "hard",
+      "duration": "02:15", 
+      "videoUrl": "assets/videos/banana-phone.mp4",
+      "previewImage": "assets/images/previews/banana-preview.jpg",
+      "tutorial": {
+        "title": "КАК РАЗГОВАРИВАТЬ С БАНАНОМ:",
+        "steps": [
+          "Возьми спелый банан (желтый, не зеленый!)",
+          "Очисти его от кожуры-чехла",
+          "Поднеси к уху и скажи 'АЛЛО!'",
+          "Жди ответа из бананового измерения",
+          "Если не работает - съешь и попробуй с другим!"
+        ]
+      },
+      "stats": {
+        "views": 18760,
+        "likes": 956,
+        "dislikes": 45
+      }
+    }
+  ]
+}

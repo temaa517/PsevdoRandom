@@ -1,0 +1,297 @@
+/* ===== УПОРОТЫЙ ВИДЕОПЛЕЕР ===== */
+
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    font-family: 'Comic Neue', cursive;
+}
+
+.video-modal-content {
+    background: var(--dark-bg);
+    border-radius: 20px;
+    max-width: 900px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 3px solid var(--neon-pink);
+    box-shadow: 0 0 50px var(--neon-pink);
+    position: relative;
+    animation: modalAppear 0.3s ease;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.video-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 2px dashed var(--electric-blue);
+}
+
+.video-title {
+    color: var(--acid-green);
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.8rem;
+    margin: 0;
+    text-shadow: 0 0 10px var(--acid-green);
+}
+
+.close-video {
+    background: var(--neon-pink);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px var(--neon-pink);
+    transition: all 0.3s ease;
+}
+
+.close-video:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 0 25px var(--neon-pink);
+}
+
+.video-container {
+    position: relative;
+    background: #000;
+}
+
+.magic-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.custom-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-container:hover .custom-controls {
+    opacity: 1;
+}
+
+.play-pause {
+    background: var(--electric-blue);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 0 10px var(--electric-blue);
+    transition: all 0.3s ease;
+}
+
+.play-pause:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--electric-blue);
+}
+
+.progress-container {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--acid-green);
+    border-radius: 3px;
+    width: 0%;
+    box-shadow: 0 0 10px var(--acid-green);
+    transition: width 0.1s ease;
+}
+
+.time-display {
+    color: white;
+    font-family: 'Comic Neue', cursive;
+    font-size: 0.9rem;
+    min-width: 100px;
+}
+
+.video-info {
+    padding: 1.5rem;
+}
+
+.video-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.video-category {
+    background: var(--mad-purple);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.video-difficulty {
+    background: var(--crazy-orange);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.video-views {
+    color: var(--electric-blue);
+    font-size: 0.9rem;
+}
+
+.video-description {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.reveal-btn {
+    background: linear-gradient(45deg, var(--neon-pink), var(--mad-purple));
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 0 20px var(--neon-pink);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.reveal-btn:hover {
+    transform: scale(1.05) rotate(-2deg);
+    box-shadow: 0 0 30px var(--neon-pink);
+}
+
+.tutorial-content {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-left: 4px solid var(--acid-green);
+    animation: tutorialReveal 0.5s ease;
+}
+
+@keyframes tutorialReveal {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.tutorial-title {
+    color: var(--acid-green);
+    margin-bottom: 1rem;
+    font-family: 'Comic Neue', cursive;
+}
+
+.tutorial-steps {
+    color: #ccc;
+    line-height: 1.8;
+    padding-left: 1.5rem;
+}
+
+.tutorial-steps li {
+    margin-bottom: 0.5rem;
+}
+
+.video-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--electric-blue);
+}
+
+.like-btn, .dislike-btn {
+    background: transparent;
+    border: 2px solid;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+    transition: all 0.3s ease;
+}
+
+.like-btn {
+    border-color: var(--acid-green);
+    color: var(--acid-green);
+}
+
+.dislike-btn {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+}
+
+.like-btn:hover, .dislike-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .video-modal-content {
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+    
+    .video-title {
+        font-size: 1.4rem;
+    }
+    
+    .video-meta {
+        gap: 1rem;
+    }
+    
+    .video-actions {
+        flex-direction: column;
+    }
+    
+    .custom-controls {
+        padding: 0.5rem;
+    }
+}

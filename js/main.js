@@ -312,3 +312,55 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+let videosData = [];
+
+async function loadVideos() {
+    try {
+        const response = await fetch('data/videos.json');
+        videosData = await response.json();
+        console.log('🎥 Видео загружены:', videosData.videos.length);
+        renderVideos(videosData.videos);
+    } catch (error) {
+        console.error('Ошибка загрузки видео:', error);
+        // Fallback - демо данные
+        loadDemoVideos();
+    }
+}
+
+function renderVideos(videos) {
+    const videosGrid = document.getElementById('videos-grid');
+    
+    videosGrid.innerHTML = videos.map(video => `
+        <div class="video-card" data-category="${video.category}" data-id="${video.id}">
+            <div class="video-thumbnail" onclick="window.videoPlayer.open(${JSON.stringify(video).replace(/"/g, '&quot;')})">
+                <div class="video-duration">${video.duration}</div>
+                <div class="video-overlay">
+                    <span class="play-icon">▶</span>
+                </div>
+                <div class="video-stats">
+                    <span class="views">👁️ ${video.stats.views.toLocaleString()}</span>
+                    <span class="likes">🤯 ${video.stats.likes}</span>
+                </div>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">${video.title}</h3>
+                <p class="video-description">${video.description}</p>
+                <div class="video-meta">
+                    <span class="difficulty ${video.difficulty}">${getDifficultyText(video.difficulty)}</span>
+                    <span class="category">${video.category}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Обновляем DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎩 Упоротые фокусы инициализированы!');
+    
+    initCustomCursor();
+    loadVideos(); // ← ЗАМЕНЯЕМ loadDemoVideos()
+    initButtons();
+    initFilters();
+});
