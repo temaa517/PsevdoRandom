@@ -43,6 +43,7 @@ class MagicCursor {
             this.mouseX = e.clientX;
             this.mouseY = e.clientY;
             this.moveCursor(e);
+            this.observeModals();
         });
 
         document.addEventListener('click', (e) => {
@@ -64,7 +65,29 @@ class MagicCursor {
         document.addEventListener('mouseleave', () => this.hide());
         document.addEventListener('mouseenter', () => this.show());
     }
+    observeModals() {
+            // Наблюдатель за появлением модальных окон
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1) { // Element node
+                            if (node.classList && (
+                                node.classList.contains('video-modal') ||
+                                node.classList.contains('epilepsy-warning') ||
+                                node.classList.contains('modal')
+                            )) {
+                                this.show(); // Показываем курсор в модалке
+                            }
+                        }
+                    });
+                });
+            });
 
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
     moveCursor(e) {
         this.cursor.style.left = (this.mouseX - 12) + 'px';
         this.cursor.style.top = (this.mouseY - 12) + 'px';
@@ -73,6 +96,7 @@ class MagicCursor {
         if (Math.random() > 0.995 && this.canPlaySound()) {
             this.playSound('whoosh', { volume: 0.1, rate: 0.8 + Math.random() * 0.4 });
         }
+        this.checkModalInteraction(e);
     }
 
     onClick(e) {
@@ -91,6 +115,17 @@ class MagicCursor {
             this.cursor.style.transform = 'scale(1) rotate(0deg)';
         }, 200);
     }
+
+    checkModalInteraction(e) {
+            const modal = document.querySelector('.video-modal, .epilepsy-warning, .modal');
+            if (modal && modal.style.display !== 'none') {
+                // Курсор над модалкой - применяем стили для модалки
+                this.cursor.style.zIndex = '10001'; // Выше модалки
+            } else {
+                // Обычная страница
+                this.cursor.style.zIndex = '9999';
+            }
+        }
 
     onHoverStart(element) {
         this.cursor.style.transform = 'translateY(-8px) scale(1.2)';
@@ -160,8 +195,10 @@ class MagicCursor {
     }
 
     isInteractive(element) {
-        return element.matches('a, button, .video-card, .filter-btn, .mad-button, [onclick]') ||
-               element.closest('a, button, .video-card, .filter-btn, .mad-button');
+        const interactiveSelectors = 'a, button, .video-card, .filter-btn, .mad-button, [onclick], .close-video, .reveal-btn, .like-btn, .dislike-btn, .play-pause, .progress-container';
+        
+        return element.matches(interactiveSelectors) ||
+               element.closest(interactiveSelectors);
     }
 
     animate() {

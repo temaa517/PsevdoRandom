@@ -341,7 +341,16 @@ class VideoPlayer {
         this.currentVideo = videoData;
         this.updateModalContent(videoData);
         this.modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
+        document.body.style.overflow = 'hidden';
+        
+        // УБЕЖДАЕМСЯ ЧТО КУРСОР ВИДЕН В МОДАЛКЕ
+        if (window.cursorEffects) {
+            setTimeout(() => {
+                window.cursorEffects.show();
+                // Принудительно обновляем позицию курсора
+                document.addEventListener('mousemove', this.forceCursorUpdate);
+            }, 100);
+        }
         
         // Автовоспроизведение
         setTimeout(() => {
@@ -355,8 +364,11 @@ class VideoPlayer {
         video.pause();
         video.currentTime = 0;
         this.modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Возвращаем скролл
+        document.body.style.overflow = 'auto';
         this.isPlaying = false;
+        
+        // УБИРАЕМ ОБРАБОТЧИК КУРСОРА
+        document.removeEventListener('mousemove', this.forceCursorUpdate);
     }
 
     updateModalContent(videoData) {
@@ -459,6 +471,16 @@ class VideoPlayer {
         };
         return levels[difficulty] || difficulty;
     }
+    
+    forceCursorUpdate = (e) => {
+        if (window.cursorEffects && this.modal.style.display === 'flex') {
+            // Принудительно обновляем позицию курсора в модалке
+            window.cursorEffects.mouseX = e.clientX;
+            window.cursorEffects.mouseY = e.clientY;
+            window.cursorEffects.moveCursor(e);
+        }
+    }
+
 }
 
 // Глобальный экземпляр

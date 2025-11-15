@@ -32,3 +32,39 @@ body.has-custom-cursor {
         display: none !important;
     }
 }
+/* ===== КУРСОР В МОДАЛЬНЫХ ОКНАХ ===== */
+
+/* Курсор должен быть поверх модальных окон */
+.video-modal ~ .magic-cursor,
+.epilepsy-warning ~ .magic-cursor,
+.modal ~ .magic-cursor {
+    z-index: 10001 !important; /* Выше модалок */
+}
+
+/* Интерактивные элементы в модалках */
+.video-modal .close-video:hover ~ .magic-cursor,
+.video-modal .reveal-btn:hover ~ .magic-cursor,
+.video-modal .like-btn:hover ~ .magic-cursor,
+.video-modal .dislike-btn:hover ~ .magic-cursor,
+.video-modal .play-pause:hover ~ .magic-cursor {
+    transform: scale(1.5) !important;
+    text-shadow: 0 0 15px var(--acid-green) !important;
+}
+
+/* Отключаем стандартный курсор в модалках */
+.video-modal,
+.epilepsy-warning,
+.modal {
+    cursor: none !important;
+}
+
+/* Элементы в модалках, которые должны показывать интерактивный курсор */
+.video-modal button,
+.video-modal .close-video,
+.video-modal .reveal-btn,
+.video-modal .like-btn,
+.video-modal .dislike-btn,
+.video-modal .play-pause,
+.video-modal .progress-container {
+    cursor: none !important;
+}
