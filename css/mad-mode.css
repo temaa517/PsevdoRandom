@@ -325,3 +325,292 @@
         filter: brightness(1.3) hue-rotate(180deg);
     }
 }
+
+/* ===== БЕЗУМНЫЙ РЕЖИМ ДЛЯ СТРАНИЦЫ "О БЕЗУМИИ" ===== */
+
+.ultra-mad .about-hero {
+    animation: heroMadShake 0.4s infinite !important;
+}
+
+@keyframes heroMadShake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    10% { transform: translateX(-3px) rotate(-1deg); }
+    20% { transform: translateX(3px) rotate(1deg); }
+    30% { transform: translateX(-3px) rotate(-1deg); }
+    40% { transform: translateX(3px) rotate(1deg); }
+    50% { transform: translateX(-2px) rotate(-0.5deg); }
+    60% { transform: translateX(2px) rotate(0.5deg); }
+    70% { transform: translateX(-2px) rotate(-0.5deg); }
+    80% { transform: translateX(2px) rotate(0.5deg); }
+    90% { transform: translateX(-1px) rotate(-0.3deg); }
+}
+
+/* Анимации для команды */
+.ultra-mad .team-member {
+    animation: teamMemberPulse 2s infinite alternate !important;
+}
+
+@keyframes teamMemberPulse {
+    0% {
+        transform: scale(1) rotate(0deg);
+        box-shadow: 0 0 20px var(--neon-pink);
+    }
+    100% {
+        transform: scale(1.02) rotate(1deg);
+        box-shadow: 0 0 40px var(--electric-blue);
+    }
+}
+
+/* Анимации для философии */
+.ultra-mad .philosophy-card {
+    animation: philosophyFloat 3s infinite ease-in-out !important;
+}
+
+@keyframes philosophyFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+/* Анимации для таймлайна */
+.ultra-mad .timeline-item {
+    animation: timelineShake 4s infinite ease-in-out !important;
+}
+
+@keyframes timelineShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2px);
+    }
+    75% {
+        transform: translateX(2px);
+    }
+}
+
+/* Анимации для CTA секции */
+.ultra-mad .cta-section {
+    animation: ctaPulse 2s infinite alternate !important;
+}
+
+@keyframes ctaPulse {
+    0% {
+        background: linear-gradient(45deg, var(--neon-pink), var(--mad-purple));
+    }
+    100% {
+        background: linear-gradient(45deg, var(--electric-blue), var(--acid-green));
+    }
+}
+
+/* Анимации для индикатора безумия */
+.ultra-mad .madness-meter {
+    animation: meterGlow 1s infinite alternate !important;
+}
+
+@keyframes meterGlow {
+    0% {
+        box-shadow: 0 0 10px var(--acid-green);
+    }
+    100% {
+        box-shadow: 0 0 30px var(--acid-green), 0 0 50px var(--acid-green);
+    }
+}
+
+.ultra-mad .meter-fill {
+    animation: meterFlow 2s infinite linear !important;
+}
+
+@keyframes meterFlow {
+    0% {
+        background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue));
+    }
+    25% {
+        background: linear-gradient(90deg, var(--electric-blue), var(--acid-green));
+    }
+    50% {
+        background: linear-gradient(90deg, var(--acid-green), var(--mad-purple));
+    }
+    75% {
+        background: linear-gradient(90deg, var(--mad-purple), var(--crazy-orange));
+    }
+    100% {
+        background: linear-gradient(90deg, var(--crazy-orange), var(--neon-pink));
+    }
+}
+
+/* Анимации для лаборатории */
+.ultra-mad .flask {
+    animation: flaskMadFloat 2s infinite ease-in-out !important;
+}
+
+@keyframes flaskMadFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateY(-20px) rotate(90deg) scale(1.2);
+    }
+    50% {
+        transform: translateY(0) rotate(180deg) scale(1);
+    }
+    75% {
+        transform: translateY(20px) rotate(270deg) scale(0.8);
+    }
+}
+
+.ultra-mad .scientist {
+    animation: scientistMadBob 1s infinite ease-in-out !important;
+}
+
+@keyframes scientistMadBob {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translate(-50%, -60%) rotate(10deg) scale(1.1);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+    75% {
+        transform: translate(-50%, -40%) rotate(-10deg) scale(0.9);
+    }
+}
+
+/* Анимации для эксперимента */
+.ultra-mad .mad-experiment {
+    animation: experimentPulse 1.5s infinite alternate !important;
+}
+
+@keyframes experimentPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 30px var(--neon-pink);
+    }
+    100% {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px var(--electric-blue), 0 0 70px var(--acid-green);
+    }
+}
+
+.ultra-mad .bubble {
+    animation: bubbleMadFloat 1.5s infinite ease-in-out !important;
+}
+
+@keyframes bubbleMadFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) scale(1.5);
+        filter: hue-rotate(180deg);
+    }
+}
+
+/* Анимации для цитат */
+.ultra-mad .mission-quote,
+.ultra-mad .member-quote {
+    animation: quoteGlow 2s infinite alternate !important;
+}
+
+@keyframes quoteGlow {
+    0% {
+        border-left-color: var(--mad-purple);
+        box-shadow: inset 4px 0 0 var(--mad-purple);
+    }
+    100% {
+        border-left-color: var(--electric-blue);
+        box-shadow: inset 4px 0 0 var(--electric-blue);
+    }
+}
+
+/* Анимации для навыков */
+.ultra-mad .skill {
+    animation: skillBounce 1s infinite alternate !important;
+}
+
+@keyframes skillBounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Анимации для иконок философии */
+.ultra-mad .philosophy-icon {
+    animation: iconSpin 3s infinite linear !important;
+}
+
+@keyframes iconSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* Анимации для дат в таймлайне */
+.ultra-mad .timeline-date {
+    animation: datePulse 2s infinite alternate !important;
+}
+
+@keyframes datePulse {
+    0% {
+        background: var(--dark-bg);
+        color: var(--crazy-orange);
+    }
+    100% {
+        background: var(--crazy-orange);
+        color: var(--dark-bg);
+    }
+}
+
+/* Анимации для кнопок CTA */
+.ultra-mad .cta-button {
+    animation: ctaButtonMad 1s infinite alternate !important;
+}
+
+@keyframes ctaButtonMad {
+    0% {
+        transform: rotate(-1deg) scale(1);
+    }
+    100% {
+        transform: rotate(2deg) scale(1.05);
+    }
+}
+
+/* Убедимся что видео фон работает на странице "О безумии" */
+.ultra-mad .psychedelic-video-background {
+    display: block !important;
+}
+
+/* Улучшаем читаемость текста на странице "О безумии" */
+.ultra-mad .mission-statement,
+.ultra-mad .member-bio,
+.ultra-mad .philosophy-card p,
+.ultra-mad .timeline-content p {
+    text-shadow: 
+        0 0 10px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(0, 0, 0, 0.6),
+        2px 2px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Делаем карточки полупрозрачными */
+.ultra-mad .team-member,
+.ultra-mad .philosophy-card,
+.ultra-mad .timeline-content,
+.ultra-mad .mission-quote {
+    background: rgba(26, 26, 26, 0.8) !important;
+    backdrop-filter: blur(10px);
+}

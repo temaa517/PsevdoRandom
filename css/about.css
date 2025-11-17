@@ -1,0 +1,635 @@
+/* ===== СТРАНИЦА "О БЕЗУМИИ" ===== */
+
+/* Герой секция */
+.about-hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    position: relative;
+}
+
+.about-hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.hero-content {
+    transform: rotate(-1deg);
+}
+
+.about-hero .hero-title {
+    font-family: var(--font-crazy);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-shadow: 5px 5px 0 #000, 0 0 20px var(--neon-pink);
+}
+
+.about-hero .title-part-1 {
+    color: var(--electric-blue);
+    display: block;
+}
+
+.about-hero .title-part-2 {
+    color: var(--neon-pink);
+    display: block;
+    font-size: 5rem;
+}
+
+.about-hero .hero-subtitle {
+    font-family: var(--font-comic);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #ccc;
+    transform: rotate(1deg);
+}
+
+/* Индикатор безумия */
+.hero-madness {
+    margin-top: 2rem;
+}
+
+.madness-meter {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 2px dashed var(--acid-green);
+}
+
+.meter-label {
+    font-family: var(--font-comic);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--acid-green);
+}
+
+.meter-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-pink), var(--electric-blue));
+    border-radius: 10px;
+    animation: meterPulse 2s infinite alternate;
+}
+
+@keyframes meterPulse {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.meter-value {
+    font-family: var(--font-crazy);
+    font-size: 1.5rem;
+    color: var(--neon-pink);
+    text-align: center;
+}
+
+/* Лаборатория в герое */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    transform: rotate(2deg);
+}
+
+.mad-scientist-lab {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.lab-equipment {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.flask {
+    position: absolute;
+    font-size: 3rem;
+    animation: float 3s infinite ease-in-out;
+}
+
+.flask-1 {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.flask-2 {
+    top: 60%;
+    left: 60%;
+    animation-delay: -1s;
+}
+
+.flask-3 {
+    top: 40%;
+    left: 40%;
+    animation-delay: -2s;
+}
+
+.scientist {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    animation: scientistBob 2s infinite ease-in-out;
+}
+
+@keyframes scientistBob {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    50% { transform: translate(-50%, -55%) rotate(5deg); }
+}
+
+/* Секция миссии */
+.our-mission {
+    padding: 4rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-top: 3px dashed var(--electric-blue);
+    border-bottom: 3px dashed var(--electric-blue);
+}
+
+.section-title {
+    font-family: var(--font-crazy);
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--acid-green);
+    text-shadow: 3px 3px 0 #000;
+}
+
+.section-subtitle {
+    font-family: var(--font-comic);
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #ccc;
+}
+
+.mission-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.mission-statement {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.mission-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.mission-stats .stat {
+    text-align: center;
+    flex: 1;
+}
+
+.mission-stats .stat-number {
+    display: block;
+    font-family: var(--font-crazy);
+    font-size: 2.5rem;
+    color: var(--crazy-orange);
+    text-shadow: 0 0 10px var(--crazy-orange);
+}
+
+.mission-stats .stat-label {
+    font-family: var(--font-comic);
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.mission-quote {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-left: 4px solid var(--mad-purple);
+}
+
+.mission-quote blockquote {
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.mission-quote cite {
+    color: var(--electric-blue);
+    font-size: 0.9rem;
+}
+
+/* Эксперимент */
+.mad-experiment {
+    background: linear-gradient(45deg, var(--neon-pink), var(--mad-purple));
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 3px dashed #000;
+    box-shadow: 0 0 30px var(--neon-pink);
+    position: relative;
+    overflow: hidden;
+}
+
+.experiment-title {
+    font-family: var(--font-crazy);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #000;
+}
+
+.experiment-content {
+    position: relative;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bubble {
+    position: absolute;
+    font-size: 2rem;
+    animation: bubbleFloat 3s infinite ease-in-out;
+}
+
+.bubble-1 {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.bubble-2 {
+    top: 60%;
+    left: 60%;
+    animation-delay: -1s;
+}
+
+.bubble-3 {
+    top: 40%;
+    left: 40%;
+    animation-delay: -2s;
+}
+
+.experiment-text {
+    font-family: var(--font-comic);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 2px 2px 0 #fff;
+}
+
+@keyframes bubbleFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.2); }
+}
+
+/* Команда */
+.our-team {
+    padding: 4rem 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-member:hover {
+    transform: translateY(-10px) rotate(2deg);
+    border-color: var(--acid-green);
+    box-shadow: 0 10px 30px rgba(57, 255, 20, 0.3);
+}
+
+.member-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-photo.professor {
+    background: linear-gradient(45deg, var(--neon-pink), var(--mad-purple));
+}
+
+.member-photo.doctor {
+    background: linear-gradient(45deg, var(--electric-blue), var(--acid-green));
+}
+
+.member-photo.magister {
+    background: linear-gradient(45deg, var(--crazy-orange), var(--neon-pink));
+}
+
+.member-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.team-member h3 {
+    font-family: var(--font-comic);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--acid-green);
+}
+
+.member-role {
+    font-family: var(--font-comic);
+    color: var(--electric-blue);
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.member-bio {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.member-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.skill {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.member-quote {
+    font-style: italic;
+    color: var(--neon-pink);
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+/* Философия */
+.our-philosophy {
+    padding: 4rem 0;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.philosophy-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.philosophy-card:hover {
+    transform: scale(1.05) rotate(-1deg);
+    border-color: var(--electric-blue);
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+}
+
+.philosophy-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.philosophy-card h3 {
+    font-family: var(--font-comic);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--acid-green);
+}
+
+.philosophy-card p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+/* История */
+.our-history {
+    padding: 4rem 0;
+}
+
+.history-timeline {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    position: relative;
+}
+
+.history-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--neon-pink), var(--electric-blue));
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timeline-date {
+    flex: 0 0 100px;
+    text-align: center;
+    font-family: var(--font-crazy);
+    font-size: 1.5rem;
+    color: var(--crazy-orange);
+    background: var(--dark-bg);
+    padding: 0.5rem;
+    border: 2px solid var(--crazy-orange);
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 0 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.timeline-content h4 {
+    font-family: var(--font-comic);
+    color: var(--electric-blue);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+/* CTA секция */
+.cta-section {
+    padding: 4rem 0;
+    background: linear-gradient(45deg, var(--neon-pink), var(--mad-purple));
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-family: var(--font-crazy);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #000;
+    text-shadow: 3px 3px 0 #fff;
+}
+
+.cta-content p {
+    font-family: var(--font-comic);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #000;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-family: var(--font-comic);
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    transform: rotate(-1deg);
+}
+
+.cta-button.primary {
+    background: #000;
+    color: white;
+    box-shadow: 5px 5px 0 var(--acid-green);
+}
+
+.cta-button.secondary {
+    background: white;
+    color: #000;
+    box-shadow: 5px 5px 0 var(--electric-blue);
+}
+
+.cta-button:hover {
+    transform: rotate(2deg) scale(1.05);
+    box-shadow: 8px 8px 0 currentColor;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .about-hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .about-hero .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .about-hero .title-part-2 {
+        font-size: 3rem;
+    }
+    
+    .mission-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .mission-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .history-timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item {
+        flex-direction: row !important;
+        align-items: flex-start;
+    }
+    
+    .timeline-date {
+        flex: 0 0 80px;
+        margin-right: 1rem;
+    }
+    
+    .timeline-content {
+        margin: 0;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
