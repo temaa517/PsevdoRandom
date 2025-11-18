@@ -389,6 +389,7 @@ class VideoPlayer {
         // Лайки
         this.modal.querySelector('.likes-count').textContent = videoData.stats.likes;
         this.modal.querySelector('.dislikes-count').textContent = videoData.stats.dislikes;
+        this.updateLikesDisplay(videoData.id);
         
         // Туториал
         this.modal.querySelector('.tutorial-title').textContent = videoData.tutorial.title;
@@ -400,6 +401,55 @@ class VideoPlayer {
         // Скрываем туториал при открытии
         this.modal.querySelector('.tutorial-content').style.display = 'none';
         this.modal.querySelector('.reveal-btn').textContent = '🎩 РАЗОБЛАЧИТЬ ФОКУС!';
+    }
+    updateLikesDisplay(videoId) {
+        if (!window.likesSystem) return;
+        
+        const stats = window.likesSystem.getVideoStats(videoId);
+        
+        // Обновляем счетчики
+        const likesCount = this.modal.querySelector('.likes-count');
+        const dislikesCount = this.modal.querySelector('.dislikes-count');
+        const likeBtn = this.modal.querySelector('.like-btn');
+        const dislikeBtn = this.modal.querySelector('.dislike-btn');
+        
+        if (likesCount) likesCount.textContent = stats.likes;
+        if (dislikesCount) dislikesCount.textContent = stats.dislikes;
+        
+        // Обновляем стили кнопок
+        if (likeBtn && dislikeBtn) {
+            window.likesSystem.updateButtonStyles(likeBtn, dislikeBtn, stats.userRating);
+        }
+    }
+
+    handleLike() {
+        if (!this.currentVideo || !window.likesSystem) return;
+        
+        const stats = window.likesSystem.likeVideo(this.currentVideo.id);
+        
+        // Анимация кнопки
+        const likeBtn = this.modal.querySelector('.like-btn');
+        if (likeBtn) {
+            likeBtn.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                likeBtn.style.transform = 'scale(1)';
+            }, 200);
+        }
+    }
+
+    handleDislike() {
+        if (!this.currentVideo || !window.likesSystem) return;
+        
+        const stats = window.likesSystem.dislikeVideo(this.currentVideo.id);
+        
+        // Анимация кнопки
+        const dislikeBtn = this.modal.querySelector('.dislike-btn');
+        if (dislikeBtn) {
+            dislikeBtn.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                dislikeBtn.style.transform = 'scale(1)';
+            }, 200);
+        }
     }
 
     toggleTutorial() {

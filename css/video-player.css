@@ -295,3 +295,118 @@
         padding: 0.5rem;
     }
 }
+
+/* ===== СТИЛИ ДЛЯ СИСТЕМЫ ЛАЙКОВ ===== */
+
+.like-btn, .dislike-btn {
+    background: transparent;
+    border: 2px solid;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.like-btn {
+    border-color: var(--acid-green);
+    color: var(--acid-green);
+}
+
+.dislike-btn {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+}
+
+.like-btn:hover, .dislike-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px currentColor;
+}
+
+.like-btn:active, .dislike-btn:active {
+    transform: scale(0.95);
+}
+
+/* Анимации для попапа достижений */
+@keyframes achievementSlideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes achievementSlideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.achievement-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, var(--neon-pink), var(--mad-purple));
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 3px dashed #000;
+    box-shadow: 0 0 30px var(--neon-pink);
+    z-index: 10001;
+    max-width: 300px;
+    animation: achievementSlideIn 0.5s ease, achievementSlideOut 0.5s ease 2.5s forwards;
+    font-family: 'Comic Neue', cursive;
+}
+
+/* Стили для карточек на главной */
+.video-stats {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+}
+
+.video-stats .views,
+.video-stats .likes {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.3rem 0.6rem;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.video-stats .likes {
+    color: var(--acid-green);
+}
+
+/* Анимация при наведении на кнопки лайков */
+.like-btn::before, .dislike-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, currentColor 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    border-radius: 50%;
+}
+
+.like-btn:hover::before, .dislike-btn:hover::before {
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+}

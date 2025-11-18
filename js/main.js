@@ -331,7 +331,10 @@ async function loadVideos() {
 function renderVideos(videos) {
     const videosGrid = document.getElementById('videos-grid');
     
-    videosGrid.innerHTML = videos.map(video => `
+    videosGrid.innerHTML = videos.map(video => {
+        const stats = window.likesSystem.getVideoStats(video.id);
+        
+        return `
         <div class="video-card" data-category="${video.category}" data-id="${video.id}">
             <div class="video-thumbnail" onclick="window.videoPlayer.open(${JSON.stringify(video).replace(/"/g, '&quot;')})">
                 <div class="video-duration">${video.duration}</div>
@@ -340,7 +343,7 @@ function renderVideos(videos) {
                 </div>
                 <div class="video-stats">
                     <span class="views">👁️ ${video.stats.views.toLocaleString()}</span>
-                    <span class="likes">🤯 ${video.stats.likes}</span>
+                    <span class="likes">🤯 ${stats.likes}</span>
                 </div>
             </div>
             <div class="video-info">
@@ -352,7 +355,8 @@ function renderVideos(videos) {
                 </div>
             </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 // Обновляем DOMContentLoaded
