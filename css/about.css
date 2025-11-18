@@ -304,8 +304,8 @@
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
     margin-top: 3rem;
 }
 
@@ -349,6 +349,10 @@
 
 .member-photo.magister {
     background: linear-gradient(45deg, var(--crazy-orange), var(--neon-pink));
+}
+
+.member-photo.director {
+    background: linear-gradient(45deg, var(--electric-blue), var(--neon-pink));
 }
 
 .member-shine {
