@@ -614,3 +614,315 @@
     background: rgba(26, 26, 26, 0.8) !important;
     backdrop-filter: blur(10px);
 }
+
+/* ===== ПСИХОДЕЛИЧЕСКИЕ ЭФФЕКТЫ ===== */
+
+/* Анимация падения частиц */
+@keyframes particleFall {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Дополнительные эффекты тряски */
+@keyframes ultraMadShake {
+    0%, 100% { 
+        transform: translateX(0) rotate(0deg) scale(1);
+    }
+    10% { 
+        transform: translateX(-5px) rotate(-1deg) scale(1.01);
+    }
+    20% { 
+        transform: translateX(5px) rotate(1deg) scale(0.99);
+    }
+    30% { 
+        transform: translateX(-5px) rotate(-1deg) scale(1.01);
+    }
+    40% { 
+        transform: translateX(5px) rotate(1deg) scale(0.99);
+    }
+    50% { 
+        transform: translateX(-3px) rotate(-0.5deg) scale(1.02);
+    }
+    60% { 
+        transform: translateX(3px) rotate(0.5deg) scale(0.98);
+    }
+    70% { 
+        transform: translateX(-3px) rotate(-0.5deg) scale(1.02);
+    }
+    80% { 
+        transform: translateX(3px) rotate(0.5deg) scale(0.98);
+    }
+    90% { 
+        transform: translateX(-2px) rotate(-0.3deg) scale(1.01);
+    }
+}
+
+/* Усиленная версия безумного режима */
+.ultra-mad {
+    animation: ultraMadShake 0.2s infinite !important;
+}
+
+/* Эффект искажения для видео карточек */
+.ultra-mad .video-card {
+    animation: cardWarp 3s infinite ease-in-out !important;
+}
+
+@keyframes cardWarp {
+    0%, 100% {
+        border-radius: 15px;
+        transform: perspective(1000px) rotateX(0) rotateY(0);
+    }
+    25% {
+        border-radius: 20px 10px 20px 10px;
+        transform: perspective(1000px) rotateX(5deg) rotateY(2deg);
+    }
+    50% {
+        border-radius: 10px 20px 10px 20px;
+        transform: perspective(1000px) rotateX(-3deg) rotateY(-2deg);
+    }
+    75% {
+        border-radius: 15px 15px 25px 25px;
+        transform: perspective(1000px) rotateX(2deg) rotateY(5deg);
+    }
+}
+
+/* Пульсация кнопок */
+.ultra-mad .mad-button,
+.ultra-mad .filter-btn {
+    animation: buttonPulse 0.5s infinite alternate !important;
+}
+
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 
+            0 0 10px currentColor,
+            0 0 20px currentColor;
+    }
+    100% {
+        box-shadow: 
+            0 0 20px currentColor,
+            0 0 40px currentColor,
+            0 0 60px currentColor;
+    }
+}
+
+/* Мерцание текста */
+.ultra-mad .hero-title,
+.ultra-mad .section-title {
+    animation: textFlicker 1s infinite alternate !important;
+}
+
+@keyframes textFlicker {
+    0%, 100% {
+        opacity: 1;
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        filter: hue-rotate(180deg);
+    }
+}
+
+/* Вращение плавающих объектов */
+.ultra-mad .floating-object {
+    animation: crazySpin 2s infinite linear !important;
+}
+
+@keyframes crazySpin {
+    0% {
+        transform: 
+            translate(0, 0) 
+            rotate(0deg) 
+            scale(1)
+            skew(0deg, 0deg);
+    }
+    25% {
+        transform: 
+            translate(20px, -20px) 
+            rotate(90deg) 
+            scale(1.3)
+            skew(5deg, 5deg);
+    }
+    50% {
+        transform: 
+            translate(40px, 0) 
+            rotate(180deg) 
+            scale(1)
+            skew(0deg, 0deg);
+    }
+    75% {
+        transform: 
+            translate(20px, 20px) 
+            rotate(270deg) 
+            scale(0.7)
+            skew(-5deg, -5deg);
+    }
+    100% {
+        transform: 
+            translate(0, 0) 
+            rotate(360deg) 
+            scale(1)
+            skew(0deg, 0deg);
+    }
+}
+
+/* Эффект свечения для контейнера */
+.ultra-mad .container {
+    animation: containerGlow 2s infinite alternate !important;
+}
+
+@keyframes containerGlow {
+    0% {
+        box-shadow: 
+            inset 0 0 50px rgba(255, 0, 255, 0.1),
+            inset 0 0 80px rgba(0, 255, 255, 0.1);
+    }
+    100% {
+        box-shadow: 
+            inset 0 0 80px rgba(255, 0, 255, 0.2),
+            inset 0 0 120px rgba(0, 255, 255, 0.2),
+            inset 0 0 160px rgba(57, 255, 20, 0.1);
+    }
+}
+
+/* Анимация для футера */
+.ultra-mad .main-footer {
+    animation: footerWave 3s infinite ease-in-out !important;
+}
+
+@keyframes footerWave {
+    0%, 100% {
+        transform: translateY(0) skew(0deg, 0deg);
+    }
+    25% {
+        transform: translateY(-5px) skew(2deg, 0deg);
+    }
+    50% {
+        transform: translateY(0) skew(0deg, 2deg);
+    }
+    75% {
+        transform: translateY(5px) skew(-2deg, 0deg);
+    }
+}
+
+/* ===== ЯДЕРНОЕ БЕЗУМИЕ ===== */
+
+/* Вращение воронки */
+@keyframes vortexSpin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Анимация чёрной дыры */
+@keyframes blackHoleSuck {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(1) rotate(180deg);
+        opacity: 0.8;
+    }
+    80% {
+        transform: scale(1) rotate(720deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0) rotate(1080deg);
+        opacity: 0;
+    }
+}
+
+/* Анимация частиц взрыва */
+@keyframes particleBoom {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+        filter: brightness(1);
+    }
+    100% {
+        transform: translate(var(--target-x), var(--target-y)) scale(0) rotate(360deg);
+        opacity: 0;
+        filter: brightness(3);
+    }
+}
+
+/* Экстренная вспышка для кнопки */
+@keyframes emergencyFlash {
+    0%, 100% {
+        background: linear-gradient(45deg, #ff0000, #ffff00);
+        box-shadow: 0 0 50px #ff0000;
+    }
+    50% {
+        background: linear-gradient(45deg, #ffff00, #ff0000);
+        box-shadow: 0 0 100px #ffff00;
+    }
+}
+
+/* Дополнительные стили для ядерного режима */
+.nuclear-mad {
+    animation: nuclearShake 0.1s infinite !important;
+}
+
+@keyframes nuclearShake {
+    0%, 100% { 
+        transform: 
+            translate(0, 0) 
+            rotate(0deg)
+            scale(1);
+    }
+    25% { 
+        transform: 
+            translate(-10px, -10px) 
+            rotate(-2deg)
+            scale(1.02);
+    }
+    50% { 
+        transform: 
+            translate(10px, 10px) 
+            rotate(2deg)
+            scale(0.98);
+    }
+    75% { 
+        transform: 
+            translate(-5px, 5px) 
+            rotate(-1deg)
+            scale(1.01);
+    }
+}
+
+/* Стили для безумного режима с взрывами */
+.ultra-mad {
+    animation: nuclearShake 0.05s infinite !important;
+    filter: brightness(1.1) contrast(1.2);
+}
+
+/* Усиленное свечение */
+.ultra-mad .video-card {
+    animation: nuclearCardPulse 0.5s infinite alternate !important;
+}
+
+@keyframes nuclearCardPulse {
+    0% {
+        box-shadow: 
+            0 0 20px var(--neon-pink),
+            0 0 40px var(--electric-blue),
+            0 0 60px var(--acid-green);
+    }
+    100% {
+        box-shadow: 
+            0 0 40px var(--electric-blue),
+            0 0 80px var(--acid-green),
+            0 0 120px var(--neon-pink);
+    }
+}

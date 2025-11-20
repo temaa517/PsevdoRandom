@@ -23,11 +23,13 @@ class MadMode {
         }
     }
 
-    enable() {
+     enable() {
         this.isActive = true;
-        document.body.classList.add('ultra-mad');
-        this.madButton.textContent = 'СПАСИТЕ! ВЫКЛЮЧИТЕ!';
+        document.body.classList.add('ultra-mad', 'nuclear-mad'); // Добавляем nuclear-mad
+        this.madButton.textContent = '💥🚨 ЯДЕРНЫЙ ВЗРЫВ! 🚨💥';
         this.madButton.style.background = 'linear-gradient(45deg, #ff0000, #ffff00)';
+        this.madButton.style.animation = 'emergencyFlash 0.3s infinite';
+        this.madButton.style.fontSize = '1.2rem';
         
         // ВКЛЮЧАЕМ ВСЕ ЭФФЕКТЫ БЕЗУМИЯ
         this.disableBeautifulCursor();
@@ -42,17 +44,22 @@ class MadMode {
         // Добавляем переливающийся фон
         this.startBackgroundMadness();
         
-        // ЗАПУСКАЕМ ПСИХОДЕЛИЧЕСКИЕ ВСПЫШКИ
-        this.startPsychedelicFlashes();
+        // ЗАПУСКАЕМ ПСИХОДЕЛИЧЕСКИЕ ЭФФЕКТЫ
+        this.startPsychedelicEffects();
         
-        console.log('🤪 БЕЗУМНЫЙ РЕЖИМ АКТИВИРОВАН С ПСИХОДЕЛИЕЙ!');
+        // 💥 ЗАПУСКАЕМ ЯДЕРНЫЕ ВЗРЫВЫ!
+        this.startNuclearExplosions();
+        
+        console.log('💥🚀🌪️ АКТИВИРОВАН РЕЖИМ ЯДЕРНОГО БЕЗУМИЯ!');
     }
 
      disable() {
         this.isActive = false;
-        document.body.classList.remove('ultra-mad');
+        document.body.classList.remove('ultra-mad', 'nuclear-mad');
         this.madButton.textContent = 'БЕЗУМНЫЙ РЕЖИМ';
         this.madButton.style.background = '';
+        this.madButton.style.animation = '';
+        this.madButton.style.fontSize = '';
         
         // ВЫКЛЮЧАЕМ ВСЕ ЭФФЕКТЫ БЕЗУМИЯ
         this.enableBeautifulCursor();
@@ -63,25 +70,37 @@ class MadMode {
         this.removeBodyShake();
         this.removeMadnessBackground();
         
-        // ОСТАНАВЛИВАЕМ ПСИХОДЕЛИЧЕСКИЕ ВСПЫШКИ
-        this.stopPsychedelicFlashes();
+        // ВЫКЛЮЧАЕМ ПСИХОДЕЛИЧЕСКИЕ ЭФФЕКТЫ
+        this.stopPsychedelicEffects();
         
-        console.log('😅 Безумный режим выключен');
+        // 💥 ВЫКЛЮЧАЕМ ЯДЕРНЫЕ ВЗРЫВЫ!
+        this.stopNuclearExplosions();
+        
+        console.log('🛑💊 Ядерное безумие остановлено');
     }
     
-     startPsychedelicFlashes() {
-        // Создаём элементы для вспышек
-        this.createFlashElements();
-        
-        // Запускаем интервал вспышек
-        this.flashInterval = setInterval(() => {
-            this.createRandomFlash();
-        }, 800); // Вспышки каждые 800ms
-        
-        // Случайные большие вспышки
-        setInterval(() => {
-            this.createBigFlash();
-        }, 3000);
+     startPsychedelicEffects() {
+        if (window.psychedelicEffects) {
+            window.psychedelicEffects.enable();
+        }
+    }
+
+    stopPsychedelicEffects() {
+        if (window.psychedelicEffects) {
+            window.psychedelicEffects.disable();
+        }
+    }
+
+    startNuclearExplosions() {
+        if (window.crazyExplosions) {
+            window.crazyExplosions.enable();
+        }
+    }
+
+    stopNuclearExplosions() {
+        if (window.crazyExplosions) {
+            window.crazyExplosions.disable();
+        }
     }
     
     createFlashElements() {
