@@ -1,5 +1,4 @@
-// ===== ЯДЕРНЫЕ ВЗРЫВЫ И КОСМИЧЕСКОЕ БЕЗУМИЕ =====
-
+// ===== РЕЖИМ ПОЛНОГО ВРАЩЕНИЯ ВСЕХ ЭЛЕМЕНТОВ =====
 class CrazyExplosions {
     constructor() {
         this.isActive = false;
@@ -9,105 +8,173 @@ class CrazyExplosions {
     }
 
     init() {
-        console.log('💥 Система взрывов загружена!');
+        console.log('💥💥💥 ЗАГРУЖЕН РЕЖИМ ПОЛНОГО ВРАЩЕНИЯ!');
+        this.addUltraStyles();
+    }
+
+    addUltraStyles() {
+        const style = document.createElement('style');
+        style.textContent = `
+            /* ОСНОВНАЯ АНИМАЦИЯ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ */
+            .crazy-rotation-mode * {
+                animation: crazyRotate 0.8s linear infinite !important;
+                transform-origin: center !important;
+            }
+            
+            /* АНИМАЦИЯ ВРАЩЕНИЯ */
+            @keyframes crazyRotate {
+                0% { 
+                    transform: rotate(0deg) scale(1) !important; 
+                }
+                25% { 
+                    transform: rotate(90deg) scale(1.2) !important; 
+                }
+                50% { 
+                    transform: rotate(180deg) scale(0.8) !important; 
+                }
+                75% { 
+                    transform: rotate(270deg) scale(1.3) !important; 
+                }
+                100% { 
+                    transform: rotate(360deg) scale(1) !important; 
+                }
+            }
+            
+            /* ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ РАЗНЫХ ТИПОВ ЭЛЕМЕНТОВ */
+            .crazy-rotation-mode div {
+                animation-duration: 1.2s !important;
+            }
+            
+            .crazy-rotation-mode p, .crazy-rotation-mode span {
+                animation-duration: 0.6s !important;
+            }
+            
+            .crazy-rotation-mode h1, .crazy-rotation-mode h2, .crazy-rotation-mode h3 {
+                animation-duration: 1.5s !important;
+            }
+            
+            .crazy-rotation-mode img {
+                animation-duration: 2s !important;
+            }
+            
+            .crazy-rotation-mode button, .crazy-rotation-mode a {
+                animation-duration: 0.7s !important;
+            }
+            
+            /* АНИМАЦИИ ДЛЯ ЭФФЕКТОВ */
+            @keyframes ultraVortexSpin {
+                0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+                100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+            }
+            
+            @keyframes epilepticFlash {
+                0%, 100% { opacity: 0; }
+                50% { opacity: 1; }
+            }
+            
+            @keyframes colorPulse {
+                0% { opacity: 0; transform: scale(1); }
+                50% { opacity: 0.6; transform: scale(1.1); }
+                100% { opacity: 0; transform: scale(1); }
+            }
+            
+            @keyframes particleFly {
+                0% { 
+                    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                    opacity: 1;
+                }
+                100% { 
+                    transform: translate(var(--target-x), var(--target-y)) scale(0) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        this.elements.push(style);
     }
 
     enable() {
         if (this.isActive) return;
         this.isActive = true;
         
-        console.log('🚀💥 ВКЛЮЧАЕМ РЕЖИМ ЯДЕРНОГО БЕЗУМИЯ!');
+        console.log('🌀🚀 АКТИВИРУЕМ РЕЖИМ ПОЛНОГО ВРАЩЕНИЯ!');
         
-        // Запускаем все эффекты взрывов
-        this.startNuclearFlashes();
-        this.startColorExplosions();
-        this.startScreenShake();
-        this.startElementRotation();
-        this.startParticleExplosions();
+        // ГЛАВНОЕ - ВКЛЮЧАЕМ ВРАЩЕНИЕ ВСЕХ ЭЛЕМЕНТОВ
+        this.activateFullRotation();
+        
+        // ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ
+        this.startUltraNuclearFlashes();
+        this.startEpilepticBackground();
+        this.startUltraScreenShake();
+        this.startParticleStorm();
+        this.startColorTsunami();
+        this.startRandomTransformChaos();
         this.startBackgroundVortex();
-        this.startTextExplosions();
-        this.startSoundBombardment();
-        
-        // Мега-эффекты
-        this.startEarthquake();
-        this.startBlackHoles();
     }
 
-    disable() {
-        if (!this.isActive) return;
-        this.isActive = false;
+    // 🔄 ГЛАВНЫЙ МЕТОД - ВКЛЮЧАЕМ ВРАЩЕНИЕ ВСЕХ ЭЛЕМЕНТОВ
+    activateFullRotation() {
+        // ДОБАВЛЯЕМ КЛАСС К BODY - ЭТО ЗАСТАВИТ ВРАЩАТЬСЯ ВСЕ ЭЛЕМЕНТЫ
+        document.body.classList.add('crazy-rotation-mode');
         
-        console.log('🛑 Выключаем ядерное безумие');
-        
-        // Останавливаем все
-        this.intervals.forEach(interval => clearInterval(interval));
-        this.intervals = [];
-        
-        // Удаляем элементы
-        this.elements.forEach(element => {
-            if (element.parentNode) element.parentNode.removeChild(element);
+        // ДОПОЛНИТЕЛЬНО ПРИМЕНЯЕМ СТИЛИ К КАЖДОМУ ЭЛЕМЕНТУ
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(element => {
+            element.style.transformOrigin = 'center';
+            element.style.willChange = 'transform';
         });
-        this.elements = [];
         
-        this.restoreSanity();
+        console.log(`🌀 Вращение активировано для ${allElements.length} элементов!`);
     }
 
-    // ЯДЕРНЫЕ ВСПЫШКИ
-    startNuclearFlashes() {
+    // 🌟 ЯДЕРНЫЕ ВСПЫШКИ
+    startUltraNuclearFlashes() {
         const flashInterval = setInterval(() => {
             if (!this.isActive) return;
             
-            // 80% шанс на вспышку
-            if (Math.random() > 0.2) {
-                this.createNuclearFlash();
-            }
-        }, 100); // ОЧЕНЬ ЧАСТО!
+            // ГАРАНТИРОВАННАЯ ВСПЫШКА
+            this.createUltraNuclearFlash();
+            
+        }, 100);
         
         this.intervals.push(flashInterval);
     }
 
-    createNuclearFlash() {
+    createUltraNuclearFlash() {
         const flash = document.createElement('div');
         
         const colors = [
-            'radial-gradient(circle, #ff0000 0%, #ff6b00 20%, #ffd000 40%, transparent 60%)',
-            'radial-gradient(circle, #00ff00 0%, #00ff88 20%, #00ffee 40%, transparent 60%)',
-            'radial-gradient(circle, #0000ff 0%, #8800ff 20%, #ff00ff 40%, transparent 60%)',
-            'radial-gradient(circle, #ffff00 0%, #ff8800 20%, #ff0000 40%, transparent 60%)',
-            'radial-gradient(circle, #ff00ff 0%, #ff0088 20%, #ff0000 40%, transparent 60%)',
-            'radial-gradient(circle, #00ffff 0%, #0088ff 20%, #0000ff 40%, transparent 60%)'
+            'radial-gradient(circle, #ff0000 0%, transparent 70%)',
+            'radial-gradient(circle, #00ff00 0%, transparent 70%)', 
+            'radial-gradient(circle, #0000ff 0%, transparent 70%)',
+            'radial-gradient(circle, #ffff00 0%, transparent 70%)',
+            'radial-gradient(circle, #ff00ff 0%, transparent 70%)'
         ];
         
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        const randomX = Math.random() * 100;
-        const randomY = Math.random() * 100;
-        const size = 30 + Math.random() * 70;
         
         flash.style.cssText = `
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: ${Math.random() * 100}%;
+            left: ${Math.random() * 100}%;
+            width: ${100 + Math.random() * 200}px;
+            height: ${100 + Math.random() * 200}px;
             background: ${randomColor};
-            background-position: ${randomX}% ${randomY}%;
-            background-size: ${size}% ${size}%;
             pointer-events: none;
-            z-index: 9995;
+            z-index: 9999;
             opacity: 0;
             mix-blend-mode: screen;
-            filter: brightness(2) contrast(2);
+            filter: brightness(2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
         `;
         
         document.body.appendChild(flash);
         this.elements.push(flash);
         
-        this.animateNuclearFlash(flash);
-    }
-
-    animateNuclearFlash(flash) {
+        // АНИМАЦИЯ
         let opacity = 0;
-        const duration = 100 + Math.random() * 200; // Очень быстро!
+        const duration = 300;
         const startTime = Date.now();
         
         const animate = () => {
@@ -115,16 +182,9 @@ class CrazyExplosions {
             const progress = elapsed / duration;
             
             if (progress < 1) {
-                // Мгновенная вспышка!
-                if (progress < 0.1) {
-                    opacity = progress / 0.1;
-                } else if (progress < 0.3) {
-                    opacity = 1;
-                } else {
-                    opacity = 1 - ((progress - 0.3) / 0.7);
-                }
-                
-                flash.style.opacity = opacity * 0.8; // ОЧЕНЬ ЯРКО!
+                opacity = Math.sin(progress * Math.PI);
+                flash.style.opacity = opacity * 0.7;
+                flash.style.transform = `translate(-50%, -50%) scale(${1 + progress})`;
                 requestAnimationFrame(animate);
             } else {
                 if (flash.parentNode) flash.parentNode.removeChild(flash);
@@ -135,149 +195,74 @@ class CrazyExplosions {
         animate();
     }
 
-    // ВЗРЫВЫ ЦВЕТОВ
-    startColorExplosions() {
-        const explosionInterval = setInterval(() => {
-            if (!this.isActive) return;
-            if (Math.random() > 0.5) return;
-            
-            this.createColorExplosion();
-        }, 200);
+    // 🌪️ ЭПИЛЕПТИЧЕСКИЙ ФОН
+    startEpilepticBackground() {
+        const bg = document.createElement('div');
+        bg.className = 'epileptic-bg';
         
-        this.intervals.push(explosionInterval);
-    }
-
-    createColorExplosion() {
-        const explosion = document.createElement('div');
-        
-        const hue1 = Math.random() * 360;
-        const hue2 = (hue1 + 120) % 360;
-        const hue3 = (hue1 + 240) % 360;
-        
-        explosion.style.cssText = `
+        bg.style.cssText = `
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at ${Math.random() * 100}% ${Math.random() * 100}%, 
-                    hsl(${hue1}, 100%, 50%) 0%,
-                    hsl(${hue2}, 100%, 50%) 30%,
-                    hsl(${hue3}, 100%, 50%) 60%,
-                    transparent 80%
-                ),
-                radial-gradient(circle at ${Math.random() * 100}% ${Math.random() * 100}%, 
-                    hsl(${hue2}, 100%, 50%) 0%,
-                    hsl(${hue3}, 100%, 50%) 30%,
-                    hsl(${hue1}, 100%, 50%) 60%,
-                    transparent 80%
-                );
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ffff00, #ff00ff, #00ffff);
+            background-size: 400% 400%;
             pointer-events: none;
-            z-index: 9994;
-            opacity: 0;
-            mix-blend-mode: difference;
-            filter: brightness(3);
+            z-index: -1;
+            opacity: 0.2;
+            mix-blend-mode: overlay;
+            animation: epilepticFlash 0.3s infinite;
         `;
         
-        document.body.appendChild(explosion);
-        this.elements.push(explosion);
+        document.body.appendChild(bg);
+        this.elements.push(bg);
         
-        this.animateColorExplosion(explosion);
+        // АНИМАЦИЯ ГРАДИЕНТА
+        let position = 0;
+        const bgInterval = setInterval(() => {
+            if (!this.isActive) return;
+            position = (position + 10) % 100;
+            bg.style.backgroundPosition = `${position}% ${position}%`;
+        }, 100);
+        
+        this.intervals.push(bgInterval);
     }
 
-    animateColorExplosion(explosion) {
-        let opacity = 0;
-        const duration = 300;
-        const startTime = Date.now();
-        
-        const animate = () => {
-            const elapsed = Date.now() - startTime;
-            const progress = elapsed / duration;
-            
-            if (progress < 1) {
-                opacity = Math.sin(progress * Math.PI); // Плавное появление и исчезновение
-                explosion.style.opacity = opacity * 0.6;
-                explosion.style.transform = `scale(${1 + progress * 0.5})`;
-                requestAnimationFrame(animate);
-            } else {
-                if (explosion.parentNode) explosion.parentNode.removeChild(explosion);
-                this.elements = this.elements.filter(el => el !== explosion);
-            }
-        };
-        
-        animate();
-    }
-
-    // ТРЯСКА ЭКРАНА
-    startScreenShake() {
-        let shakeIntensity = 0;
-        
+    // 🌀 ТРЯСКА ЭКРАНА
+    startUltraScreenShake() {
         const shakeInterval = setInterval(() => {
             if (!this.isActive) return;
             
-            // Случайная интенсивность тряски
-            shakeIntensity = 5 + Math.random() * 15;
+            const shakeX = (Math.random() - 0.5) * 30;
+            const shakeY = (Math.random() - 0.5) * 30;
+            const rotate = (Math.random() - 0.5) * 10;
             
-            const shakeX = (Math.random() - 0.5) * shakeIntensity;
-            const shakeY = (Math.random() - 0.5) * shakeIntensity;
-            const rotate = (Math.random() - 0.5) * shakeIntensity * 0.5;
+            document.body.style.transform = `translate(${shakeX}px, ${shakeY}px) rotate(${rotate}deg)`;
             
-            document.body.style.transform = `
-                translate(${shakeX}px, ${shakeY}px)
-                rotate(${rotate}deg)
-            `;
-            
-        }, 50); // ОЧЕНЬ ЧАСТАЯ ТРЯСКА!
+        }, 80);
         
         this.intervals.push(shakeInterval);
     }
 
-    // ВРАЩЕНИЕ ВСЕХ ЭЛЕМЕНТОВ
-    startElementRotation() {
-        const rotationInterval = setInterval(() => {
+    // 💫 ШТОРМ ЧАСТИЦ
+    startParticleStorm() {
+        const stormInterval = setInterval(() => {
             if (!this.isActive) return;
             
-            const elements = document.querySelectorAll('*'); // ВСЕ элементы!
+            // СОЗДАЕМ НЕСКОЛЬКО ВЗРЫВОВ
+            const explosionCount = 1 + Math.floor(Math.random() * 3);
+            for (let i = 0; i < explosionCount; i++) {
+                setTimeout(() => this.createParticleExplosion(), i * 100);
+            }
             
-            elements.forEach(element => {
-                if (Math.random() > 0.95) { // 5% шанс
-                    const rotation = (Math.random() - 0.5) * 360;
-                    const scale = 0.5 + Math.random() * 1.5;
-                    
-                    element.style.transform = `
-                        rotate(${rotation}deg)
-                        scale(${scale})
-                    `;
-                    element.style.transition = 'transform 0.1s';
-                    
-                    // Возвращаем обратно
-                    setTimeout(() => {
-                        if (this.isActive) {
-                            element.style.transform = '';
-                        }
-                    }, 100);
-                }
-            });
-        }, 100);
+        }, 500);
         
-        this.intervals.push(rotationInterval);
-    }
-
-    // ВЗРЫВЫ ЧАСТИЦ
-    startParticleExplosions() {
-        const particleInterval = setInterval(() => {
-            if (!this.isActive) return;
-            if (Math.random() > 0.3) return;
-            
-            this.createParticleExplosion();
-        }, 150);
-        
-        this.intervals.push(particleInterval);
+        this.intervals.push(stormInterval);
     }
 
     createParticleExplosion() {
-        const particleCount = 20 + Math.floor(Math.random() * 30);
+        const particleCount = 15 + Math.floor(Math.random() * 20);
         const centerX = Math.random() * window.innerWidth;
         const centerY = Math.random() * window.innerHeight;
         
@@ -289,64 +274,115 @@ class CrazyExplosions {
     createParticle(centerX, centerY) {
         const particle = document.createElement('div');
         
-        const symbols = ['💥', '⭐', '✨', '🔴', '🟢', '🔵', '🟡', '🟣', '⚡', '🎆', '🌠', '💫'];
+        const symbols = ['💥','⭐','✨','🔥','⚡','🎆','🌈','💫'];
         const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
         
         const angle = Math.random() * Math.PI * 2;
-        const distance = 50 + Math.random() * 300;
-        const size = 1 + Math.random() * 3;
+        const distance = 50 + Math.random() * 150;
+        const targetX = centerX + Math.cos(angle) * distance;
+        const targetY = centerY + Math.sin(angle) * distance;
+        const duration = 800 + Math.random() * 800;
         
         particle.textContent = randomSymbol;
         particle.style.cssText = `
             position: fixed;
-            font-size: ${size}rem;
+            font-size: ${1 + Math.random() * 2}rem;
             left: ${centerX}px;
             top: ${centerY}px;
             pointer-events: none;
-            z-index: 9996;
+            z-index: 9998;
             opacity: 1;
             transform: translate(-50%, -50%);
-            animation: particleBoom 1s ease-out forwards;
-            filter: brightness(2) hue-rotate(${Math.random() * 360}deg);
+            filter: brightness(2);
+            text-shadow: 0 0 10px yellow;
+            --target-x: ${targetX}px;
+            --target-y: ${targetY}px;
+            animation: particleFly ${duration}ms ease-out forwards;
         `;
-        
-        // Динамическое создание анимации
-        const animationName = `particleBoom_${Date.now()}_${Math.random()}`;
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ${animationName} {
-                0% {
-                    transform: translate(-50%, -50%) scale(0) rotate(0deg);
-                    opacity: 1;
-                }
-                100% {
-                    transform: 
-                        translate(
-                            ${centerX + Math.cos(angle) * distance}px, 
-                            ${centerY + Math.sin(angle) * distance}px
-                        ) 
-                        scale(0) 
-                        rotate(${360 + Math.random() * 360}deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        
-        document.head.appendChild(style);
-        particle.style.animationName = animationName;
         
         document.body.appendChild(particle);
         this.elements.push(particle);
-        this.elements.push(style);
         
         setTimeout(() => {
             if (particle.parentNode) particle.parentNode.removeChild(particle);
-            if (style.parentNode) style.parentNode.removeChild(style);
-            this.elements = this.elements.filter(el => el !== particle && el !== style);
-        }, 1000);
+            this.elements = this.elements.filter(el => el !== particle);
+        }, duration);
     }
 
-    // ВОРОНКА НА ФОНЕ
+    // 🌊 ЦУНАМИ ЦВЕТА
+    startColorTsunami() {
+        const tsunamiInterval = setInterval(() => {
+            if (!this.isActive) return;
+            
+            this.createColorWave();
+            
+        }, 1500);
+        
+        this.intervals.push(tsunamiInterval);
+    }
+
+    createColorWave() {
+        const wave = document.createElement('div');
+        
+        const hue = Math.random() * 360;
+        wave.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(45deg, 
+                hsl(${hue}, 100%, 50%) 0%, 
+                hsl(${(hue + 180) % 360}, 100%, 50%) 100%);
+            pointer-events: none;
+            z-index: 9990;
+            opacity: 0;
+            mix-blend-mode: hard-light;
+            animation: colorPulse 2s ease-in-out;
+        `;
+        
+        document.body.appendChild(wave);
+        this.elements.push(wave);
+        
+        setTimeout(() => {
+            if (wave.parentNode) wave.parentNode.removeChild(wave);
+            this.elements = this.elements.filter(el => el !== wave);
+        }, 2000);
+    }
+
+    // 🎪 СЛУЧАЙНЫЕ ТРАНСФОРМАЦИИ
+    startRandomTransformChaos() {
+        const chaosInterval = setInterval(() => {
+            if (!this.isActive) return;
+            
+            const elements = document.querySelectorAll('*');
+            const randomElements = Array.from(elements)
+                .filter(() => Math.random() > 0.8) // 20% элементов
+                .slice(0, 10); // максимум 10 элементов
+            
+            randomElements.forEach(element => {
+                const skewX = (Math.random() - 0.5) * 30;
+                const skewY = (Math.random() - 0.5) * 30;
+                const scale = 0.5 + Math.random();
+                
+                element.style.transform += ` skew(${skewX}deg, ${skewY}deg) scale(${scale})`;
+                
+                // Возвращаем обратно через время
+                setTimeout(() => {
+                    if (this.isActive) {
+                        element.style.transform = element.style.transform
+                            .replace(` skew(${skewX}deg, ${skewY}deg)`, '')
+                            .replace(` scale(${scale})`, '');
+                    }
+                }, 500);
+            });
+            
+        }, 300);
+        
+        this.intervals.push(chaosInterval);
+    }
+
+    // 🌀 ВОРОНКА НА ФОНЕ
     startBackgroundVortex() {
         const vortex = document.createElement('div');
         vortex.className = 'crazy-vortex';
@@ -362,150 +398,60 @@ class CrazyExplosions {
                 #ff0000, #ff6b00, #ffd000, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000
             );
             pointer-events: none;
-            z-index: -4;
-            opacity: 0.3;
+            z-index: -2;
+            opacity: 0.1;
             mix-blend-mode: overlay;
             transform: translate(-50%, -50%);
-            animation: vortexSpin 2s linear infinite;
+            animation: ultraVortexSpin 3s linear infinite;
         `;
         
         document.body.appendChild(vortex);
         this.elements.push(vortex);
     }
 
-    // ВЗРЫВЫ ТЕКСТА
-    startTextExplosions() {
-        const textInterval = setInterval(() => {
-            if (!this.isActive) return;
-            
-            const texts = document.querySelectorAll('h1, h2, h3, p, span, div');
-            
-            texts.forEach(text => {
-                if (Math.random() > 0.1) { // 2% шанс
-                    // Взрыв текста!
-                    text.style.transform = `
-                        scale(${1 + Math.random()})
-                        rotate(${(Math.random() - 0.5) * 180}deg)
-                        skew(${(Math.random() - 0.5) * 30}deg, ${(Math.random() - 0.5) * 30}deg)
-                    `;
-                    text.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                    text.style.textShadow = `
-                        0 0 20px currentColor,
-                        0 0 40px currentColor,
-                        0 0 60px currentColor
-                    `;
-                    text.style.transition = 'all 0.1s';
-                    
-                    setTimeout(() => {
-                        if (this.isActive) {
-                            text.style.transform = '';
-                            text.style.color = '';
-                            text.style.textShadow = '';
-                        }
-                    }, 200);
-                }
-            });
-        }, 50);
+    disable() {
+        if (!this.isActive) return;
+        this.isActive = false;
         
-        this.intervals.push(textInterval);
-    }
-
-    // ЗВУКОВАЯ БОМБАРДИРОВКА
-    startSoundBombardment() {
-        if (!window.soundManager) return;
+        console.log('🛑 Выключаем режим вращения...');
         
-        const soundInterval = setInterval(() => {
-            if (!this.isActive) return;
-            
-            // 50% шанс на звук
-            if (Math.random() > 0.5) {
-                const sounds = ['explosion', 'flash', 'magic', 'sparkle', 'boom'];
-                const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
-                
-                window.soundManager.play(randomSound, {
-                    volume: 0.2 + Math.random() * 0.3,
-                    rate: 0.5 + Math.random() * 1.5
-                });
-            }
-        }, 200);
+        // ОСТАНАВЛИВАЕМ ВСЁ
+        this.intervals.forEach(interval => clearInterval(interval));
+        this.intervals = [];
         
-        this.intervals.push(soundInterval);
-    }
-
-    // МЕГА-ТРЯСКА (ЗЕМЛЕТРЯСЕНИЕ)
-    startEarthquake() {
-        const earthquakeInterval = setInterval(() => {
-            if (!this.isActive) return;
-            
-            // Сильная тряска для всего body
-            const shakeX = (Math.random() - 0.5) * 30;
-            const shakeY = (Math.random() - 0.5) * 30;
-            const rotate = (Math.random() - 0.5) * 10;
-            
-            document.body.style.transform = `
-                translate(${shakeX}px, ${shakeY}px)
-                rotate(${rotate}deg)
-                scale(${0.9 + Math.random() * 0.2})
-            `;
-            
-        }, 80);
+        // УДАЛЯЕМ ЭЛЕМЕНТЫ
+        this.elements.forEach(element => {
+            if (element.parentNode) element.parentNode.removeChild(element);
+        });
+        this.elements = [];
         
-        this.intervals.push(earthquakeInterval);
-    }
-
-    // ЧЁРНЫЕ ДЫРЫ
-    startBlackHoles() {
-        const blackHoleInterval = setInterval(() => {
-            if (!this.isActive) return;
-            if (Math.random() > 0.8) return;
-            
-            this.createBlackHole();
-        }, 1000);
-        
-        this.intervals.push(blackHoleInterval);
-    }
-
-    createBlackHole() {
-        const blackHole = document.createElement('div');
-        
-        blackHole.style.cssText = `
-            position: fixed;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, #000000 0%, #330066 30%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9997;
-            opacity: 0;
-            animation: blackHoleSuck 3s ease-in forwards;
-            mix-blend-mode: multiply;
-        `;
-        
-        document.body.appendChild(blackHole);
-        this.elements.push(blackHole);
-        
-        setTimeout(() => {
-            if (blackHole.parentNode) blackHole.parentNode.removeChild(blackHole);
-            this.elements = this.elements.filter(el => el !== blackHole);
-        }, 3000);
+        // ВОССТАНАВЛИВАЕМ РАЗУМ
+        this.restoreSanity();
     }
 
     restoreSanity() {
-        // Возвращаем всё на место
+        // УБИРАЕМ КЛАСС ВРАЩЕНИЯ
+        document.body.classList.remove('crazy-rotation-mode');
         document.body.style.transform = '';
         
-        // Возвращаем все элементы
+        // ВОЗВРАЩАЕМ ВСЕ ЭЛЕМЕНТЫ В НОРМАЛЬНОЕ СОСТОЯНИЕ
         const allElements = document.querySelectorAll('*');
         allElements.forEach(element => {
             element.style.transform = '';
-            element.style.color = '';
-            element.style.textShadow = '';
-            element.style.transition = '';
+            element.style.transformOrigin = '';
+            element.style.willChange = '';
+            element.style.animation = '';
         });
+        
+        console.log('✅ Все элементы остановлены!');
     }
 }
 
-// Глобальный экземпляр
-window.crazyExplosions = new CrazyExplosions();
+// СРАЗУ СОЗДАЕМ И ЗАПУСКАЕМ
+window.ultraCrazyExplosions = new UltraCrazyExplosions();
+
+// АВТОМАТИЧЕСКИ ВКЛЮЧАЕМ ЧЕРЕЗ 1 СЕКУНДУ
+setTimeout(() => {
+    console.log('🚀 АВТОМАТИЧЕСКИЙ ЗАПУСК РЕЖИМА ВРАЩЕНИЯ!');
+    window.ultraCrazyExplosions.enable();
+}, 1000);
