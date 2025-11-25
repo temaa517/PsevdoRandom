@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Предложить Безумный Фокус | Псевдо-Рандом</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/submit.css">
+    <link rel="stylesheet" href="css/mad-mode.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Безумный фон -->
+    <div class="mad-background">
+        <div class="floating-object banana">🍌</div>
+        <div class="floating-object sock">🧦</div>
+        <div class="floating-object cookie">🍪</div>
+        <div class="floating-object wand">🪄</div>
+    </div>
+
+    <!-- Хедер -->
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="nav-logo">
+                <span class="logo-icon">🎩</span>
+                <span class="logo-text">Упоротые Фокусы</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Фокусы</a></li>
+                <li><a href="about.html" class="nav-link">О безумии</a></li>
+                <li><a href="submit.html" class="nav-link">Предложить</a></li>
+            </ul>
+            <button class="mad-button" id="mad-mode">БЕЗУМНЫЙ РЕЖИМ</button>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <section class="suggest-section">
+            <h1 class="section-title">ПРЕДЛОЖИТЬ ФОКУС</h1>
+            
+            <div class="form-container">
+                <form id="suggestion-form">
+                    <div class="form-group">
+                        <label class="form-label">🎩 Название фокуса</label>
+                        <input type="text" class="form-input" placeholder="Например: Исчезающий банан в носке..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">📝 Описание безумия</label>
+                        <textarea class="form-textarea" placeholder="Опишите ваш гениальный/безумный фокус во всех подробностях..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">🔧 Что понадобится?</label>
+                        <textarea class="form-textarea" placeholder="Банан, носок, молоток, немного удачи..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">🎯 Уровень безумия</label>
+                        <div class="madness-meter">
+                            <span class="madness-label">От "нормально" до "вызываю скорую"</span>
+                            <input type="range" class="madness-slider" min="1" max="10" value="5">
+                            <div class="madness-value">⚡ Безумие: 5/10 ⚡</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">🏷️ Категории</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="cards"> Карты
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="coin"> Монеты
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="rope"> Верёвки
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="mental"> Ментальные
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="crazy"> Просто безумие
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="category" value="danger"> Опасно для жизни
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">⚠️ Предупреждения</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="warning" value="fire"> Может вызвать пожар
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="warning" value="police"> Вызовет интерес полиции
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="warning" value="friends"> Потеря друзей
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="warning" value="sanity"> Потеря рассудка
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="mad-button">
+                            🚀 ОТПРАВИТЬ В КОСМОС!
+                        </button>
+                        <button type="reset" class="mad-button secondary">
+                            🔄 СБРОСИТЬ ХАОС
+                        </button>
+                        <button type="button" class="mad-button danger" onclick="window.location.href='index.html'">
+                            🏃‍♂️ СБЕЖАТЬ ОТСЮДА
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Сообщение об успехе -->
+    <div class="success-message" id="success-message">
+        <div class="success-icon">🎉</div>
+        <h2 style="font-family: var(--font-crazy); margin-bottom: 1rem; color: black;">УСПЕХ!</h2>
+        <p style="color: black; font-family: var(--font-comic);">
+            Ваше безумие успешно отправлено!<br>
+            Скоро мы его рассмотрим (если выживем)
+        </p>
+    </div>
+
+    <!-- Футер -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">ПСЕВДО-РАНДОМ</div>
+                <p class="footer-text">
+                    Сайт с самыми безумными и тупорылыми фокусами во вселенной<br>
+                    <span class="warning">⚠️ Предупреждение: использование фокусов может привести к непредсказуемым последствиям!</span>
+                </p>
+                <div class="footer-madness">
+                    <span class="madness-level">🎪 Уровень безумия: ЗАПРЕДЕЛЬНЫЙ 🎪</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка слайдера безумия
+        const madnessSlider = document.querySelector('.madness-slider');
+        const madnessValue = document.querySelector('.madness-value');
+
+        madnessSlider.addEventListener('input', function() {
+            const value = this.value;
+            let text = '';
+            
+            if (value <= 3) text = '😐 Нормально';
+            else if (value <= 5) text = '😄 Весело';
+            else if (value <= 7) text = '🤪 Безумие';
+            else if (value <= 9) text = '👽 Инопланетяне';
+            else text = '🏥 Скорая помощь';
+            
+            madnessValue.innerHTML = `⚡ ${text}: ${value}/10 ⚡`;
+        });
+
+        // Обработка формы
+        const form = document.getElementById('suggestion-form');
+        const successMessage = document.getElementById('success-message');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Анимация отправки
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.classList.add('sending');
+            submitBtn.textContent = '🚀 ОТПРАВЛЯЕМ...';
+            
+            // Имитация отправки
+            setTimeout(() => {
+                submitBtn.classList.remove('sending');
+                submitBtn.textContent = '🚀 ОТПРАВИТЬ В КОСМОС!';
+                
+                // Показываем сообщение об успехе
+                successMessage.classList.add('show');
+                
+                // Скрываем сообщение через 3 секунды
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                    form.reset();
+                    madnessSlider.dispatchEvent(new Event('input'));
+                }, 3000);
+            }, 2000);
+        });
+
+        // Случайные анимации для формы
+        setInterval(() => {
+            const inputs = document.querySelectorAll('.form-input, .form-textarea, .form-select');
+            const randomInput = inputs[Math.floor(Math.random() * inputs.length)];
+            
+            randomInput.style.transform = 'scale(1.02)';
+            randomInput.style.boxShadow = '0 0 25px var(--neon-pink)';
+            
+            setTimeout(() => {
+                randomInput.style.transform = '';
+                randomInput.style.boxShadow = '';
+            }, 500);
+        }, 3000);
+    </script>
+
+    <script src="js/crazy-explosions.js"></script>
+    <script src="js/psychedelic-effects.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/utils/sound-manager.js"></script>
+    <script src="js/utils/cursor-effects.js"></script>
+    <script src="js/utils/cursor-trail.js"></script>
+    <script src="js/mad-mode.js"></script>
+
+</body>
+</html>
