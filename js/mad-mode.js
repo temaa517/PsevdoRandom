@@ -11,21 +11,28 @@ class MadMode {
     }
 
     init() {
-        this.madButton.addEventListener('click', () => this.toggle());
+        this.safetyModal = null;
+        this.evasiveBtn = null;
+        this.spectrumOverlay = null;
+        this.madBackground = null;
+
+        this.createSafetyModal();
+        this.madButton.addEventListener('click', () => this.requestToggle());
         console.log('🎩 Безумный режим загружен и готов к упоротости!');
     }
 
-    toggle() {
-        if (!this.isActive) {
-            this.enable();
-        } else {
+    requestToggle() {
+        if (this.isActive) {
             this.disable();
+        } else {
+            this.showSafetyModal();
         }
     }
 
      enable() {
         this.isActive = true;
         document.body.classList.add('ultra-mad', 'nuclear-mad'); // Добавляем nuclear-mad
+        document.body.classList.add('hyper-mad');
         this.madButton.textContent = '💥🚨 ЯДЕРНЫЙ ВЗРЫВ! 🚨💥';
         this.madButton.style.background = 'linear-gradient(45deg, #ff0000, #ffff00)';
         this.madButton.style.animation = 'emergencyFlash 0.3s infinite';
@@ -34,6 +41,7 @@ class MadMode {
         // ВКЛЮЧАЕМ ВСЕ ЭФФЕКТЫ БЕЗУМИЯ
         this.disableBeautifulCursor();
         this.enableMadCursor();
+        this.ensureMadBackground();
         this.accelerateFloatingObjects();
         this.addCrazyObjects();
         this.transformText();
@@ -55,7 +63,7 @@ class MadMode {
 
      disable() {
         this.isActive = false;
-        document.body.classList.remove('ultra-mad', 'nuclear-mad');
+        document.body.classList.remove('ultra-mad', 'nuclear-mad', 'hyper-mad');
         this.madButton.textContent = 'БЕЗУМНЫЙ РЕЖИМ';
         this.madButton.style.background = '';
         this.madButton.style.animation = '';
@@ -63,6 +71,7 @@ class MadMode {
         
         // ВЫКЛЮЧАЕМ ВСЕ ЭФФЕКТЫ БЕЗУМИЯ
         this.enableBeautifulCursor();
+        this.disableMadCursor();
         this.removeCrazyObjects();
         this.normalizeFloatingObjects();
         this.restoreText();
@@ -78,7 +87,136 @@ class MadMode {
         
         console.log('🛑💊 Ядерное безумие остановлено');
     }
-    
+    ensureMadBackground() {
+        if (this.madBackground) return;
+        let layer = document.querySelector('.mad-background');
+        if (!layer) {
+            layer = document.createElement('div');
+            layer.className = 'mad-background';
+            document.body.appendChild(layer);
+        }
+        this.madBackground = layer;
+    }
+
+    createSafetyModal() {
+        if (this.safetyModal) return;
+
+        const modal = document.createElement('div');
+        modal.className = 'mad-consent-modal';
+        modal.innerHTML = `
+            <div class="mad-consent-backdrop"></div>
+            <div class="mad-consent-window">
+                <h3>⚠️ Вы эпилепсик?</h3>
+                <p>Безумный режим — это вспышки, цвета, хаос. Продолжать?</p>
+                <div class="mad-consent-actions">
+                    <button class="mad-consent-btn mad-yes-btn">Да</button>
+                    <button class="mad-consent-btn mad-no-btn">Нет, включай хаос</button>
+                    <button class="mad-consent-link mad-cancel-btn">Отмена</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+        this.safetyModal = modal;
+        this.evasiveBtn = modal.querySelector('.mad-yes-btn');
+
+        const startBtn = modal.querySelector('.mad-no-btn');
+        const cancelBtn = modal.querySelector('.mad-cancel-btn');
+        const backdrop = modal.querySelector('.mad-consent-backdrop');
+
+        const hide = () => this.hideSafetyModal();
+
+        startBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hide();
+            this.enable();
+        });
+
+        cancelBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hide();
+        });
+
+        backdrop.addEventListener('click', hide);
+
+        const moveAway = (e) => this.moveEvasiveButton(e);
+        this.evasiveBtn.addEventListener('mouseenter', moveAway);
+        this.evasiveBtn.addEventListener('mousemove', moveAway);
+        this.evasiveBtn.addEventListener('click', (e) => e.preventDefault());
+    }
+
+    showSafetyModal() {
+        if (!this.safetyModal) return;
+        this.safetyModal.classList.add('visible');
+    }
+
+    hideSafetyModal() {
+        if (!this.safetyModal) return;
+        this.safetyModal.classList.remove('visible');
+    }
+
+    moveEvasiveButton(e) {
+        const container = this.safetyModal.querySelector('.mad-consent-window');
+        if (!container || !this.evasiveBtn) return;
+        const contRect = container.getBoundingClientRect();
+        const btnRect = this.evasiveBtn.getBoundingClientRect();
+
+        const padding = 12;
+        const maxLeft = contRect.width - btnRect.width - padding;
+        const maxTop = contRect.height - btnRect.height - padding;
+
+        const nextLeft = Math.max(
+            padding,
+            Math.min(
+                maxLeft,
+                (e.offsetX || Math.random() * contRect.width) + Math.random() * 80 - 40
+            )
+        );
+        const nextTop = Math.max(
+            padding,
+            Math.min(
+                maxTop,
+                (e.offsetY || Math.random() * contRect.height) + Math.random() * 60 - 30
+            )
+        );
+
+        this.evasiveBtn.style.transform = `translate(${nextLeft}px, ${nextTop}px) rotate(${Math.random() * 10 - 5}deg)`;
+    }
+
+    startBackgroundMadness() {
+        if (!this.spectrumOverlay) {
+            this.spectrumOverlay = document.createElement('div');
+            this.spectrumOverlay.className = 'mad-spectrum-overlay';
+            document.body.appendChild(this.spectrumOverlay);
+        }
+
+        if (!this.flashElements.length) {
+            this.createFlashElements();
+        }
+
+        if (!this.flashInterval) {
+            this.flashInterval = setInterval(() => {
+                this.createRandomFlash();
+                if (Math.random() > 0.4) {
+                    this.createBigFlash();
+                }
+            }, 600);
+        }
+    }
+
+    removeMadnessBackground() {
+        if (this.flashInterval) {
+            clearInterval(this.flashInterval);
+            this.flashInterval = null;
+        }
+        this.stopPsychedelicFlashes();
+
+        if (this.spectrumOverlay && this.spectrumOverlay.parentNode) {
+            this.spectrumOverlay.parentNode.removeChild(this.spectrumOverlay);
+        }
+        this.spectrumOverlay = null;
+    }
+
      startPsychedelicEffects() {
         if (window.psychedelicEffects) {
             window.psychedelicEffects.enable();

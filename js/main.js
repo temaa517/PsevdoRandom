@@ -151,12 +151,15 @@ function initButtons() {
     });
 
     // Кнопка безумного режима
-    document.getElementById('mad-mode').addEventListener('click', function() {
-        document.body.classList.toggle('ultra-mad');
-        this.textContent = document.body.classList.contains('ultra-mad') 
-            ? 'НОРМАЛЬНЫЙ РЕЖИМ' 
-            : 'БЕЗУМНЫЙ РЕЖИМ';
-    });
+    const madBtn = document.getElementById('mad-mode');
+    if (madBtn) {
+        madBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (window.madMode) {
+                window.madMode.requestToggle();
+            }
+        });
+    }
 }
 
 function initFilters() {

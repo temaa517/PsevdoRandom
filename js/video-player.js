@@ -387,8 +387,12 @@ class VideoPlayer {
         this.modal.querySelector('.video-description').textContent = videoData.description;
         
         // Лайки
-        this.modal.querySelector('.likes-count').textContent = videoData.stats.likes;
-        this.modal.querySelector('.dislikes-count').textContent = videoData.stats.dislikes;
+        const stats = window.likesSystem
+            ? window.likesSystem.getVideoStats(videoData.id)
+            : { likes: videoData.stats.likes, dislikes: videoData.stats.dislikes, userRating: null };
+
+        this.modal.querySelector('.likes-count').textContent = stats.likes;
+        this.modal.querySelector('.dislikes-count').textContent = stats.dislikes;
         this.updateLikesDisplay(videoData.id);
         
         // Туториал
@@ -425,7 +429,7 @@ class VideoPlayer {
     handleLike() {
         if (!this.currentVideo || !window.likesSystem) return;
         
-        const stats = window.likesSystem.likeVideo(this.currentVideo.id);
+        window.likesSystem.likeVideo(this.currentVideo.id);
         
         // Анимация кнопки
         const likeBtn = this.modal.querySelector('.like-btn');
@@ -440,7 +444,7 @@ class VideoPlayer {
     handleDislike() {
         if (!this.currentVideo || !window.likesSystem) return;
         
-        const stats = window.likesSystem.dislikeVideo(this.currentVideo.id);
+        window.likesSystem.dislikeVideo(this.currentVideo.id);
         
         // Анимация кнопки
         const dislikeBtn = this.modal.querySelector('.dislike-btn');
@@ -465,42 +469,6 @@ class VideoPlayer {
             revealBtn.textContent = '🎩 РАЗОБЛАЧИТЬ ФОКУС!';
             revealBtn.style.background = 'linear-gradient(45deg, var(--neon-pink), var(--mad-purple))';
         }
-    }
-
-    handleLike() {
-        if (!this.currentVideo) return;
-        
-        this.currentVideo.stats.likes++;
-        this.modal.querySelector('.likes-count').textContent = this.currentVideo.stats.likes;
-        
-        const btn = this.modal.querySelector('.like-btn');
-        btn.style.background = 'var(--acid-green)';
-        btn.style.color = 'black';
-        
-        // Сохраняем в LocalStorage
-        this.saveRating('liked');
-    }
-
-    handleDislike() {
-        if (!this.currentVideo) return;
-        
-        this.currentVideo.stats.dislikes++;
-        this.modal.querySelector('.dislikes-count').textContent = this.currentVideo.stats.dislikes;
-        
-        const btn = this.modal.querySelector('.dislike-btn');
-        btn.style.background = 'var(--neon-pink)';
-        btn.style.color = 'white';
-        
-        // Сохраняем в LocalStorage
-        this.saveRating('disliked');
-    }
-
-    saveRating(type) {
-        if (!this.currentVideo) return;
-        
-        const ratings = JSON.parse(localStorage.getItem('videoRatings') || '{}');
-        ratings[this.currentVideo.id] = type;
-        localStorage.setItem('videoRatings', JSON.stringify(ratings));
     }
 
     getCategoryName(category) {

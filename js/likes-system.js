@@ -1,8 +1,11 @@
 // ===== СИСТЕМА ЛАЙКОВ ДЛЯ УПОРОТЫХ ФОКУСОВ =====
+// Каждому пользователю (браузеру) разрешён один голос за видео: лайк ИЛИ дизлайк.
 
 class LikesSystem {
     constructor() {
-        this.likesData = this.loadLikesData();
+        this.userId = this.ensureUserId();
+        this.baseCounts = this.loadBaseCounts();
+        this.userVotes = this.loadUserVotes();
         this.init();
     }
 
@@ -11,97 +14,125 @@ class LikesSystem {
         this.updateAllLikeCounts();
     }
 
-    loadLikesData() {
-        const saved = localStorage.getItem('madLikes');
-        if (saved) {
-            return JSON.parse(saved);
+    ensureUserId() {
+        let userId = localStorage.getItem('madUserId');
+        if (!userId) {
+            userId = `user-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+            localStorage.setItem('madUserId', userId);
         }
-        
-        // Начальные данные для демо-фокусов
+        return userId;
+    }
+
+    loadBaseCounts() {
+        // Чистим старое хранилище если оно осталось
+        localStorage.removeItem('madLikes');
+
+        const saved = localStorage.getItem('madLikesBase');
+        if (saved) {
+            try {
+                return JSON.parse(saved);
+            } catch (e) {
+                console.warn('Не удалось прочитать сохранённые лайки, сбрасываем.', e);
+            }
+        }
+
+        const defaults = this.generateDefaultCounts();
+        localStorage.setItem('madLikesBase', JSON.stringify(defaults));
+        return defaults;
+    }
+
+    generateDefaultCounts() {
+        // Базовые цифры ~10 лайков и 3-4 дизлайка на каждое видео
         return {
-            1: { likes: 892, dislikes: 15, userRating: null },
-            2: { likes: 1245, dislikes: 23, userRating: null },
-            3: { likes: 956, dislikes: 45, userRating: null },
-            4: { likes: 2100, dislikes: 67, userRating: null },
-            5: { likes: 3150, dislikes: 89, userRating: null },
-            6: { likes: 1870, dislikes: 45, userRating: null },
-            7: { likes: 4250, dislikes: 120, userRating: null },
-            8: { likes: 2780, dislikes: 156, userRating: null },
-            9: { likes: 5120, dislikes: 234, userRating: null },
-            10: { likes: 7450, dislikes: 89, userRating: null },
-            11: { likes: 9870, dislikes: 12, userRating: null }
+            1: { likes: 10, dislikes: 3 },
+            2: { likes: 10, dislikes: 4 },
+            3: { likes: 10, dislikes: 3 },
+            4: { likes: 10, dislikes: 3 },
+            5: { likes: 10, dislikes: 4 },
+            6: { likes: 10, dislikes: 3 },
+            7: { likes: 10, dislikes: 4 },
+            8: { likes: 10, dislikes: 3 },
+            9: { likes: 10, dislikes: 4 },
+            10: { likes: 10, dislikes: 3 },
+            11: { likes: 10, dislikes: 3 },
+            12: { likes: 10, dislikes: 4 },
+            13: { likes: 10, dislikes: 3 },
+            14: { likes: 10, dislikes: 4 },
+            15: { likes: 10, dislikes: 3 },
         };
     }
 
-    saveLikesData() {
-        localStorage.setItem('madLikes', JSON.stringify(this.likesData));
+    loadUserVotes() {
+        const saved = localStorage.getItem('madUserVotes');
+        if (saved) {
+            try {
+                return JSON.parse(saved);
+            } catch (e) {
+                console.warn('Не удалось прочитать пользовательские голоса, сбрасываем.', e);
+            }
+        }
+        return {};
+    }
+
+    saveUserVotes() {
+        localStorage.setItem('madUserVotes', JSON.stringify(this.userVotes));
     }
 
     getVideoStats(videoId) {
-        if (!this.likesData[videoId]) {
-            this.likesData[videoId] = { likes: 0, dislikes: 0, userRating: null };
-        }
-        return this.likesData[videoId];
+        const base = this.baseCounts[videoId] || { likes: 10, dislikes: 3 };
+        const userRating = this.userVotes[videoId] || null;
+
+        return {
+            likes: base.likes + (userRating === 'liked' ? 1 : 0),
+            dislikes: base.dislikes + (userRating === 'disliked' ? 1 : 0),
+            userRating,
+        };
     }
 
     likeVideo(videoId) {
-        const stats = this.getVideoStats(videoId);
-        
-        // Если уже лайкнул - снимаем лайк
-        if (stats.userRating === 'liked') {
-            stats.likes--;
-            stats.userRating = null;
-        } else {
-            // Если дизлайкнул - снимаем дизлайк и ставим лайк
-            if (stats.userRating === 'disliked') {
-                stats.dislikes--;
-            }
-            stats.likes++;
-            stats.userRating = 'liked';
+        const current = this.userVotes[videoId];
+
+        // Один голос на пользователя: повторный клик по лайку ничего не меняет
+        if (current === 'liked') {
+            return this.getVideoStats(videoId);
         }
-        
-        this.saveLikesData();
+
+        this.userVotes[videoId] = 'liked';
+        this.saveUserVotes();
+
         this.updateVideoLikeDisplay(videoId);
         this.checkAchievements();
-        
-        // Воспроизводим звук
+
         if (window.soundManager) {
             window.soundManager.play('like', { volume: 0.3 });
         }
-        
-        return stats;
+
+        return this.getVideoStats(videoId);
     }
 
     dislikeVideo(videoId) {
-        const stats = this.getVideoStats(videoId);
-        
-        // Если уже дизлайкнул - снимаем дизлайк
-        if (stats.userRating === 'disliked') {
-            stats.dislikes--;
-            stats.userRating = null;
-        } else {
-            // Если лайкнул - снимаем лайк и ставим дизлайк
-            if (stats.userRating === 'liked') {
-                stats.likes--;
-            }
-            stats.dislikes++;
-            stats.userRating = 'disliked';
+        const current = this.userVotes[videoId];
+
+        // Один голос на пользователя: повторный клик по дизлайку ничего не меняет
+        if (current === 'disliked') {
+            return this.getVideoStats(videoId);
         }
-        
-        this.saveLikesData();
+
+        this.userVotes[videoId] = 'disliked';
+        this.saveUserVotes();
+
         this.updateVideoLikeDisplay(videoId);
-        
-        // Воспроизводим звук
+
         if (window.soundManager) {
             window.soundManager.play('dislike', { volume: 0.3 });
         }
-        
-        return stats;
+
+        return this.getVideoStats(videoId);
     }
 
     updateVideoLikeDisplay(videoId) {
         const stats = this.getVideoStats(videoId);
-        
+
         // Обновляем в модальном окне
         const modal = document.querySelector('.video-modal');
         if (modal && modal.style.display === 'flex') {
@@ -109,26 +140,24 @@ class LikesSystem {
             const dislikesCount = modal.querySelector('.dislikes-count');
             const likeBtn = modal.querySelector('.like-btn');
             const dislikeBtn = modal.querySelector('.dislike-btn');
-            
+
             if (likesCount) likesCount.textContent = stats.likes;
             if (dislikesCount) dislikesCount.textContent = stats.dislikes;
-            
-            // Обновляем стили кнопок
+
             this.updateButtonStyles(likeBtn, dislikeBtn, stats.userRating);
         }
-        
-        // Обновляем на главной странице
+
         this.updateCardLikeDisplay(videoId);
     }
 
     updateButtonStyles(likeBtn, dislikeBtn, userRating) {
-        // Сбрасываем стили
+        if (!likeBtn || !dislikeBtn) return;
+
         likeBtn.style.background = 'transparent';
         likeBtn.style.color = 'var(--acid-green)';
         dislikeBtn.style.background = 'transparent';
         dislikeBtn.style.color = 'var(--neon-pink)';
-        
-        // Применяем стили в зависимости от выбора пользователя
+
         if (userRating === 'liked') {
             likeBtn.style.background = 'var(--acid-green)';
             likeBtn.style.color = 'black';
@@ -150,9 +179,8 @@ class LikesSystem {
     }
 
     updateAllLikeCounts() {
-        // Обновляем все карточки на странице
         document.querySelectorAll('.video-card').forEach(card => {
-            const videoId = parseInt(card.dataset.id);
+            const videoId = parseInt(card.dataset.id, 10);
             if (videoId) {
                 this.updateCardLikeDisplay(videoId);
             }
@@ -160,13 +188,15 @@ class LikesSystem {
     }
 
     checkAchievements() {
-        // Проверяем достижения
-        const totalLikes = Object.values(this.likesData).reduce((sum, stats) => sum + (stats.userRating === 'liked' ? 1 : 0), 0);
-        
+        const totalLikes = Object.values(this.userVotes).reduce(
+            (sum, vote) => sum + (vote === 'liked' ? 1 : 0),
+            0
+        );
+
         if (totalLikes >= 5) {
             this.unlockAchievement('critic');
         }
-        
+
         if (totalLikes >= 10) {
             this.unlockAchievement('super_critic');
         }
@@ -177,15 +207,15 @@ class LikesSystem {
             critic: {
                 title: '👍 КРИТИК',
                 description: 'Поставил 5 лайков! Ты настоящий ценитель упоротости!',
-                icon: '👍'
+                icon: '👍',
             },
             super_critic: {
-                title: '🏆 СУПЕР-КРИТИК', 
+                title: '🏆 СУПЕР-КРИТИК',
                 description: 'Поставил 10 лайков! Ты гуру безумных фокусов!',
-                icon: '🏆'
-            }
+                icon: '🏆',
+            },
         };
-        
+
         const achievement = achievements[achievementId];
         if (achievement && !localStorage.getItem(`achievement_${achievementId}`)) {
             this.showAchievementPopup(achievement);
@@ -211,7 +241,7 @@ class LikesSystem {
             animation: achievementSlideIn 0.5s ease, achievementSlideOut 0.5s ease 2.5s forwards;
             font-family: 'Comic Neue', cursive;
         `;
-        
+
         popup.innerHTML = `
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
                 <span style="font-size: 2rem;">${achievement.icon}</span>
@@ -219,10 +249,9 @@ class LikesSystem {
             </div>
             <p style="margin: 0; font-size: 0.9rem;">${achievement.description}</p>
         `;
-        
+
         document.body.appendChild(popup);
-        
-        // Автоудаление через 3 секунды
+
         setTimeout(() => {
             if (popup.parentNode) {
                 popup.parentNode.removeChild(popup);
@@ -230,21 +259,27 @@ class LikesSystem {
         }, 3000);
     }
 
-    // Получение статистики для отображения
     getPopularVideos() {
-        return Object.entries(this.likesData)
-            .sort(([,a], [,b]) => b.likes - a.likes)
+        return Object.entries(this.baseCounts)
+            .map(([id, base]) => {
+                const stats = this.getVideoStats(Number(id));
+                return [id, stats.likes, base];
+            })
+            .sort(([, likesA], [, likesB]) => likesB - likesA)
             .slice(0, 5);
     }
 
     getUserStats() {
-        const ratedVideos = Object.values(this.likesData).filter(stats => stats.userRating).length;
-        const totalLikes = Object.values(this.likesData).reduce((sum, stats) => sum + (stats.userRating === 'liked' ? 1 : 0), 0);
-        
+        const ratedVideos = Object.values(this.userVotes).filter(Boolean).length;
+        const totalLikes = Object.values(this.userVotes).reduce(
+            (sum, vote) => sum + (vote === 'liked' ? 1 : 0),
+            0
+        );
+
         return {
             ratedVideos,
             totalLikes,
-            completion: Math.round((ratedVideos / Object.keys(this.likesData).length) * 100)
+            completion: Math.round((ratedVideos / Object.keys(this.baseCounts).length) * 100),
         };
     }
 }
